@@ -1,0 +1,28 @@
+name: Run Datadog Synthetic tests
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  synthetic-tests:
+    if: ${{ secrets.DATADOG_API_KEY && secrets.DATADOG_APP_KEY }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Run Datadog tests
+        env:
+          DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+          DATADOG_APP_KEY: ${{ secrets.DATADOG_APP_KEY }}
+        run: |
+          echo "Running Datadog Synthetic tests..."
+          # Place your dd-synthetics run command here, e.g.:
+          # npx @datadog/datadog-ci synthetics run-tests --failOnCriticalErrors
+  skip:
+    if: ${{ !secrets.DATADOG_API_KEY || !secrets.DATADOG_APP_KEY }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Skip Datadog tests
+        run: echo "Datadog secrets not provided; skipping Synthetic tests."
