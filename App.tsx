@@ -68,7 +68,7 @@ const App: React.FC = () => {
             <Layout>
                 <AnimatePresence mode="wait">
                     <Suspense fallback={<div className="text-white p-8">Loading...</div>}>
-                        <Routes location={location} key={location.pathname}>
+                        <Routes location={location}>
                             <Route path="/" element={<PageTransition><Home /></PageTransition>} />
                             <Route path="/about" element={<PageTransition><About /></PageTransition>} />
                             <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
