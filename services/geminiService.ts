@@ -1,38 +1,31 @@
-import { GoogleGenAI } from "@google/genai";
-import { SYSTEM_PROMPT } from "../constants";
-
-let aiClient: GoogleGenAI | null = null;
-
-const getClient = () => {
-  if (!aiClient) {
-    const apiKey = process.env.API_KEY;
-    if (!apiKey) {
-      console.warn("Gemini API Key is missing. AI features will be disabled.");
-      return null;
-    }
-    aiClient = new GoogleGenAI({ apiKey });
-  }
-  return aiClient;
-};
-
+/**
+ * Securely communicates with Pixcident AI via the PHP backend proxy.
+ * This ensures the API key remains hidden from the frontend.
+ */
 export const generateAIResponse = async (userMessage: string): Promise<string> => {
-  const client = getClient();
-  if (!client) {
-    return "I'm currently offline. Please configure the API Key to chat with Pixcident AI.";
-  }
-
   try {
-    const response = await client.models.generateContent({
-      model: 'gemini-3-flash-preview',
-      contents: userMessage,
-      config: {
-        systemInstruction: SYSTEM_PROMPT,
-      }
+    const response = await fetch('/api/ai_proxy.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: userMessage })
     });
-    
-    return response.text || "Pixcident AI could not generate a response.";
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || 'Server error');
+    }
+
+    const data = await response.json();
+
+    if (data.success) {
+      return data.reply;
+    } else {
+      return data.message || "I'm sorry, I couldn't generate a response.";
+    }
   } catch (error) {
     console.error("Error communicating with Pixcident AI:", error);
-    return "Connection interrupted. Please try again later.";
+    return "Connection interrupted. Please ensure the AI is configured on the server or try again later.";
   }
 };
