@@ -26,7 +26,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/17dPoIEY8loZUEEVm2CuU8g
   - `public/favicon.png` referenced in `index.html` as the favicon
   - `public/assets/` contains site imagery (portfolio, team, renders)
 - Integration:
-  - Logo is loaded with `fetchpriority="high"` to improve LCP
+  - Logo is loaded with `fetchPriority="high"` to improve LCP
   - Portfolio and modal images use `loading="lazy"` and `decoding="async"`
   - Images are referenced via absolute paths (e.g., `/assets/<file>`) for Vite
 
@@ -49,7 +49,7 @@ View your app in AI Studio: https://ai.studio/apps/drive/17dPoIEY8loZUEEVm2CuU8g
   - Dropdown buttons expose `aria-expanded` and `aria-haspopup`
 - Performance:
   - Lazy-load non-critical images
-  - `fetchpriority="high"` on logo, `decoding="async"` on images
+  - `fetchPriority="high"` on logo, `decoding="async"` on images
   - Build with Vite (`npm run build`)
 
 ## Testing Protocols
