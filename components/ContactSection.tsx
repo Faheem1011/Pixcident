@@ -1,17 +1,47 @@
 import React, { useState } from 'react';
-import { Mail, MapPin, CheckCircle, Loader2 } from 'lucide-react';
+import { Mail, MapPin, CheckCircle, Loader2, AlertCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ContactSection: React.FC = () => {
-  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success'>('idle');
+  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setFormState('submitting');
-    // Simulate network request
-    setTimeout(() => {
-      setFormState('success');
-    }, 2000);
+    setErrorMessage('');
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      name: formData.get('name'),
+      email: formData.get('email'),
+      projectType: formData.get('projectType'),
+      message: formData.get('message'),
+      website: formData.get('website') // Honeypot field
+    };
+
+    try {
+      const response = await fetch('/api/contact.php', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setFormState('success');
+        e.currentTarget.reset();
+      } else {
+        setFormState('error');
+        setErrorMessage(result.message || 'Failed to send message. Please try again.');
+      }
+    } catch (error) {
+      setFormState('error');
+      setErrorMessage('Network error. Please try again or email us directly at Contact@pixcident.com');
+    }
   };
 
   return (
@@ -34,7 +64,7 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-white font-bold text-lg">Email Us</h4>
-                  <p className="text-zinc-400">hello@pixcident.com</p>
+                  <p className="text-zinc-400">Contact@pixcident.com</p>
                 </div>
               </div>
               <div className="flex items-start gap-4">
@@ -69,6 +99,24 @@ const ContactSection: React.FC = () => {
                     Send another
                   </button>
                 </motion.div>
+              ) : formState === 'error' ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="flex flex-col items-center justify-center h-[400px] text-center"
+                >
+                  <div className="w-20 h-20 bg-red-500/20 text-red-500 rounded-full flex items-center justify-center mb-6">
+                    <AlertCircle size={40} />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-2">Oops! Something went wrong</h3>
+                  <p className="text-zinc-400 mb-4 max-w-md">{errorMessage}</p>
+                  <button
+                    onClick={() => setFormState('idle')}
+                    className="mt-6 px-6 py-3 bg-brand-orange text-white font-bold rounded hover:bg-orange-600 transition-colors uppercase tracking wider"
+                  >
+                    Try Again
+                  </button>
+                </motion.div>
               ) : (
                 <motion.form
                   onSubmit={handleSubmit}
@@ -79,17 +127,17 @@ const ContactSection: React.FC = () => {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     <div className="flex flex-col gap-2">
                       <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Name</label>
-                      <input required type="text" className="bg-zinc-900 border border-zinc-800 text-white px-4 py-3 rounded focus:outline-none focus:border-brand-orange transition-colors" placeholder="John Doe" />
+                      <input required type="text" name="name" className="bg-zinc-900 border border-zinc-800 text-white px-4 py-3 rounded focus:outline-none focus:border-brand-orange transition-colors" placeholder="John Doe" />
                     </div>
                     <div className="flex flex-col gap-2">
                       <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Email</label>
-                      <input required type="email" className="bg-zinc-900 border border-zinc-800 text-white px-4 py-3 rounded focus:outline-none focus:border-brand-orange transition-colors" placeholder="john@example.com" />
+                      <input required type="email" name="email" className="bg-zinc-900 border border-zinc-800 text-white px-4 py-3 rounded focus:outline-none focus:border-brand-orange transition-colors" placeholder="john@example.com" />
                     </div>
                   </div>
 
                   <div className="flex flex-col gap-2 mb-6">
                     <label htmlFor="project-type" className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Project Type</label>
-                    <select id="project-type" name="project-type" className="bg-zinc-900 border border-zinc-800 text-white px-4 py-3 rounded focus:outline-none focus:border-brand-orange transition-colors">
+                    <select id="project-type" name="projectType" className="bg-zinc-900 border border-zinc-800 text-white px-4 py-3 rounded focus:outline-none focus:border-brand-orange transition-colors">
                       <option>3D Animation</option>
                       <option>Architectural Viz</option>
                       <option>Unreal Engine Dev</option>
@@ -99,9 +147,12 @@ const ContactSection: React.FC = () => {
                     </select>
                   </div>
 
+                  {/* Honeypot field - hidden from users, catches bots */}
+                  <input type="text" name="website" style={{ position: 'absolute', left: '-9999px' }} tabIndex={-1} autoComplete="off" />
+
                   <div className="flex flex-col gap-2 mb-8">
                     <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Message</label>
-                    <textarea required rows={4} className="bg-zinc-900 border border-zinc-800 text-white px-4 py-3 rounded focus:outline-none focus:border-brand-orange transition-colors" placeholder="Tell us about your project..." />
+                    <textarea required rows={4} name="message" className="bg-zinc-900 border border-zinc-800 text-white px-4 py-3 rounded focus:outline-none focus:border-brand-orange transition-colors" placeholder="Tell us about your project..." />
                   </div>
 
                   <button
@@ -113,6 +164,24 @@ const ContactSection: React.FC = () => {
                       <>
                         <Loader2 className="animate-spin" size={20} /> Sending...
                       </>
+                    ) : formState === 'error' ? (
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        className="flex flex-col items-center justify-center h-[400px] text-center"
+                      >
+                        <div className="w-20 h-20 bg-red-500/20 text-red-500 rounded-full flex items-center justify-center mb-6">
+                          <AlertCircle size={40} />
+                        </div>
+                        <h3 className="text-2xl font-bold text-white mb-2">Oops! Something went wrong</h3>
+                        <p className="text-zinc-400 mb-4">{errorMessage}</p>
+                        <button
+                          onClick={() => setFormState('idle')}
+                          className="mt-6 px-6 py-3 bg-brand-orange text-white font-bold rounded hover:bg-orange-600 transition-colors"
+                        >
+                          Try Again
+                        </button>
+                      </motion.div>
                     ) : (
                       "Send Message"
                     )}

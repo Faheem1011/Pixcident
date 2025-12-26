@@ -229,7 +229,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 </div>
                 <div>
                   <p className="text-zinc-500 uppercase font-mono text-xs mb-1">Email:</p>
-                  <a href="mailto:info@pixcident.com" className="hover:text-white">info@pixcident.com</a>
+                  <a href="mailto:Contact@pixcident.com" className="hover:text-white">Contact@pixcident.com</a>
                 </div>
                 <div>
                   <p className="text-zinc-500 uppercase font-mono text-xs mb-1">Social:</p>
