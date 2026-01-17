@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import SEO from '../components/SEO';
 import { useParams, Link } from 'react-router-dom';
 import { SERVICES } from '../constants';
 import { motion, useScroll, useTransform } from 'framer-motion';
@@ -13,25 +14,33 @@ const ServiceDetail: React.FC = () => {
   const y = useTransform(scrollYProgress, [0, 1], [0, 300]);
 
   if (!service) {
-    return <div className="min-h-screen bg-brand-black flex items-center justify-center text-white">Service not found</div>;
+    return (
+      <>
+        <SEO title="Service Not Found" />
+        <div className="min-h-screen bg-brand-black flex items-center justify-center text-white">Service not found</div>
+      </>
+    );
   }
 
   const HERO_IMAGES: Record<string, string> = {
-    'web-dev': '/assets/product A+ content image.jpg',
-    'vibe-coding': '/assets/red sneakers render.png',
-    'ai-agents': '/assets/pixcident owner.png',
-    'virtual-envs': '/assets/INDOOR-POOL-RENDER.jpg',
-    '3d-anim': '/assets/creatine product render.png',
-    'arch-viz': '/assets/MASOOD-HEIGHT-OFFICE-SPACE-RENDER-scaled.jpg',
-    'unreal-dev': '/assets/exterior scene with Car.jpg',
-    'game-dev': '/assets/office interior scene.png',
-    'motion-vfx': '/assets/vitamin product image.png',
-    'ai-content': '/assets/product A+ content image.jpg',
+    'web-dev': '/assets/services/web-dev.jpg',
+    'vibe-coding': '/assets/portfolio/abstract-1.jpg',
+    'ai-solutions': '/assets/services/ai-brain.jpg',
+    '3d-anim': '/assets/portfolio/product-4.png',
+    'arch-viz': '/assets/portfolio/archviz-1.jpg',
+    'game-dev': '/assets/services/game-dev.jpg',
+    'motion-vfx': '/assets/portfolio/vfx-2.png',
   };
   const heroImage = HERO_IMAGES[service.id] || `https://placehold.co/1920x1080/050505/333?text=${encodeURIComponent(service.title)}+Header`;
 
   return (
     <div className="bg-brand-black" ref={containerRef}>
+      <SEO
+        title={service.title}
+        description={service.description}
+        image={heroImage}
+        url={window.location.href}
+      />
 
       {/* Parallax Hero Section */}
       <section className="relative h-[80vh] flex items-center overflow-hidden">

@@ -16,10 +16,10 @@ interface ParticleProps {
   mouseY: MotionValue<number>;
 }
 
-const Particle: React.FC<ParticleProps> = ({ 
-  data, 
-  mouseX, 
-  mouseY 
+const Particle: React.FC<ParticleProps> = ({
+  data,
+  mouseX,
+  mouseY
 }) => {
   const x = useTransform(mouseX, [0, 1], [(data.x - 50) * 0.8, (data.x - 50) * -0.8]);
   const y = useTransform(mouseY, [0, 1], [(data.y - 50) * 0.8, (data.y - 50) * -0.8]);
@@ -52,7 +52,7 @@ const Hero: React.FC = () => {
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
   const y2 = useTransform(scrollY, [0, 500], [0, -150]);
-  
+
   const mouseX = useMotionValue(0.5);
   const mouseY = useMotionValue(0.5);
 
@@ -72,7 +72,7 @@ const Hero: React.FC = () => {
   const contentY = useTransform(smoothMouseY, [0, 1], [-15, 15]);
 
   const [particles, setParticles] = useState<ParticleData[]>([]);
-  
+
   useEffect(() => {
     setParticles(Array.from({ length: 25 }).map(() => ({
       x: Math.random() * 100,
@@ -84,22 +84,34 @@ const Hero: React.FC = () => {
   }, []);
 
   return (
-    <section 
+    <section
       className="relative h-screen w-full flex items-center justify-center overflow-hidden bg-brand-black perspective-1000"
       onMouseMove={handleMouseMove}
     >
       {/* Spotlight */}
-      <motion.div 
+      <motion.div
         className="absolute inset-0 pointer-events-none z-0"
         style={{ background: spotlight }}
       />
 
-      {/* Background & Grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900 via-brand-black to-brand-black opacity-80" />
-      
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover opacity-60 z-0"
+      >
+        <source src="/assets/backgrounds/hero-video.mp4" type="video/mp4" />
+      </video>
+
+      {/* Background Overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900/50 via-brand-black/80 to-brand-black opacity-90 z-0" />
+
+
       {/* 3D Floor Grid */}
-      <div className="absolute bottom-0 left-[-50%] w-[200%] h-[50%] bg-[linear-gradient(to_right,#FF5500_1px,transparent_1px),linear-gradient(to_bottom,#FF5500_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.05] [mask-image:linear-gradient(to_bottom,transparent,black)] origin-bottom" 
-           style={{ transform: 'rotateX(60deg) translateZ(0)' }} 
+      <div className="absolute bottom-0 left-[-50%] w-[200%] h-[50%] bg-[linear-gradient(to_right,#FF5500_1px,transparent_1px),linear-gradient(to_bottom,#FF5500_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.1] [mask-image:linear-gradient(to_bottom,transparent,black)] origin-bottom z-0"
+        style={{ transform: 'rotateX(60deg) translateZ(0)' }}
       />
 
       {/* Particles */}
@@ -108,7 +120,7 @@ const Hero: React.FC = () => {
       ))}
 
       {/* Main Content */}
-      <motion.div 
+      <motion.div
         className="relative z-10 container mx-auto px-6 text-center"
         style={{ x: contentX, y: contentY }}
       >
@@ -118,7 +130,7 @@ const Hero: React.FC = () => {
           </span>
         </motion.div>
 
-        <motion.h1 
+        <motion.h1
           className="font-display font-bold text-7xl md:text-9xl tracking-tighter text-white mb-6 uppercase leading-none"
           initial={{ opacity: 0, y: 100, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -127,12 +139,12 @@ const Hero: React.FC = () => {
           <div className="flex justify-center gap-0 md:gap-4 flex-wrap">
             <span>Pix</span>
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500">
-                <HackerText text="CIDENT" speed={50} />
+              <HackerText text="CIDENT" speed={50} />
             </span>
           </div>
         </motion.h1>
 
-        <motion.p 
+        <motion.p
           style={{ y: y2 }}
           className="text-zinc-400 text-lg md:text-2xl max-w-2xl mx-auto font-light leading-relaxed"
           initial={{ opacity: 0 }}
@@ -149,11 +161,11 @@ const Hero: React.FC = () => {
       {/* Marquee */}
       <div className="absolute bottom-0 left-0 w-full overflow-hidden py-4 border-t border-zinc-800 bg-black/50 backdrop-blur-sm z-20">
         <div className="flex animate-marquee whitespace-nowrap">
-            {[...Array(6)].map((_, i) => (
-                <span key={i} className="text-4xl md:text-6xl font-display font-bold text-transparent text-outline uppercase px-8 opacity-30">
-                    Creative // Future // Digital // Experience //
-                </span>
-            ))}
+          {[...Array(6)].map((_, i) => (
+            <span key={i} className="text-4xl md:text-6xl font-display font-bold text-transparent text-outline uppercase px-8 opacity-30">
+              Creative // Future // Digital // Experience //
+            </span>
+          ))}
         </div>
       </div>
     </section>

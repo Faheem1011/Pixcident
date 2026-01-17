@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { useLocation } from 'react-router-dom';
 
 const Legal: React.FC = () => {
@@ -8,6 +9,10 @@ const Legal: React.FC = () => {
 
     return (
         <div className="bg-brand-black min-h-screen pt-32 px-6">
+            <SEO
+                title={title}
+                description={`${title} for Pixcident services and usage.`}
+            />
             <div className="container mx-auto max-w-4xl">
                 <h1 className="text-4xl font-display font-bold text-white mb-8">{title}</h1>
                 <div className="prose prose-invert prose-orange max-w-none">

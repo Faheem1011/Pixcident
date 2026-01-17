@@ -1,4 +1,5 @@
 import React from 'react';
+import SEO from '../components/SEO';
 import { motion } from 'framer-motion';
 import { TEAM_MEMBERS } from '../constants';
 import ContactSection from '../components/ContactSection';
@@ -6,6 +7,10 @@ import ContactSection from '../components/ContactSection';
 const About: React.FC = () => {
   return (
     <div className="bg-brand-black min-h-screen">
+      <SEO
+        title="About Us"
+        description="Pixcident is a full-spectrum creative studio delivering photorealistic 3D visualization, Unreal Engine game development, architectural renders, motion graphics, and AI-powered creative workflows. Excellence in every pixel."
+      />
 
       {/* Hero */}
       <section className="pt-40 pb-20 px-6">
@@ -20,10 +25,10 @@ const About: React.FC = () => {
           </motion.h1>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
             <p className="text-xl text-zinc-300 leading-relaxed">
-              Pixcident is a multidisciplinary creative studio and digital production brand positioned at the intersection of design, animation, technology, and emerging media.
+              Pixcident is a full-spectrum creative studio specializing in photorealistic 3D visualization, game development with Unreal Engine, motion graphics, and cutting-edge AI-powered workflows. We transform complex creative visions into tangible, high-impact digital experiences.
             </p>
             <p className="text-lg text-zinc-500 leading-relaxed">
-              Founded in 2025, we operate with a decentralized team of elite artists and engineers. We don't just use tools; we build them. Our mission is to eliminate the repetitive tasks in digital creation to unlock pure artistic expression.
+              Founded in 2025, our team combines artistic mastery with technical precision. From architectural visualizations that sell properties before they're built, to immersive game environments and brand campaigns that captivate audiences—we deliver excellence at every pixel. Our mission: push the boundaries of what's possible in digital creation.
             </p>
           </div>
         </div>
@@ -48,33 +53,63 @@ const About: React.FC = () => {
         </div>
       </section>
 
-      {/* The Team */}
-      <section className="py-24 px-6">
+      {/* The Founder */}
+      <section className="py-32 px-6">
         <div className="container mx-auto">
-          <h2 className="text-4xl font-display font-bold text-white mb-16 uppercase">The Squad</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {TEAM_MEMBERS.map((member, i) => (
-              <motion.div
-                key={member.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="group"
-              >
-                <div className="overflow-hidden mb-6 rounded-sm bg-zinc-900 border border-zinc-800 group-hover:border-brand-orange/50 transition-colors">
-                  <img
-                    src={member.image}
-                    alt={`${member.name} - ${member.role}`}
-                    className="w-full aspect-[3/4] object-cover grayscale group-hover:grayscale-0 transition-all duration-500 hover:scale-105"
-                    loading="lazy"
-                  />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative group"
+            >
+              <div className="absolute -inset-4 bg-brand-orange/20 blur-2xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+              <div className="relative overflow-hidden rounded-sm bg-zinc-900 border border-zinc-800 transition-all duration-500 shadow-2xl">
+                <img
+                  src={TEAM_MEMBERS[0].image}
+                  alt={TEAM_MEMBERS[0].name}
+                  className="w-full aspect-[4/5] object-cover grayscale hover:grayscale-0 transition-all duration-700 hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-orange/10 border border-brand-orange/20 backdrop-blur-xl rounded-full flex items-center justify-center animate-pulse">
+                <div className="text-brand-orange font-mono text-xs text-center leading-tight">
+                  EST. 2025<br />STUDIO
                 </div>
-                <h3 className="text-xl font-bold text-white">{member.name}</h3>
-                <p className="text-brand-orange text-xs font-bold uppercase tracking-wider mb-2">{member.role}</p>
-                <p className="text-zinc-500 text-sm">{member.bio}</p>
-              </motion.div>
-            ))}
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <h2 className="text-brand-orange text-sm font-bold uppercase tracking-[0.3em] mb-4">Founder & Lead Artist</h2>
+                <h3 className="text-5xl md:text-7xl font-display font-bold text-white mb-6 uppercase tracking-tight">
+                  {TEAM_MEMBERS[0].name}
+                </h3>
+                <div className="w-20 h-1 bg-brand-orange mb-8" />
+              </div>
+
+              <div className="space-y-6 text-xl text-zinc-400 leading-relaxed font-light">
+                <p>
+                  {TEAM_MEMBERS[0].bio}
+                </p>
+                <p>
+                  With a background spanning 3D production, real-time engines, and automation, Faheem leads every project at Pixcident. He combines artistic intuition with deep technical knowledge to deliver results that don't just meet expectations—they redefine them.
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-4 pt-4">
+                {['Unreal Engine 5', '3D Animation', 'AI Automation', 'Web Tech'].map(skill => (
+                  <span key={skill} className="px-4 py-2 bg-zinc-900 border border-zinc-800 text-zinc-500 font-mono text-xs uppercase tracking-widest">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>

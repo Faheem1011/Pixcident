@@ -8,14 +8,11 @@ export const NAV_LINKS = [
 export const SERVICE_LINKS = [
   { label: '3D & Animation', href: '/services/3d-anim' },
   { label: 'ArchViz', href: '/services/arch-viz' },
-  { label: 'Unreal Engine', href: '/services/unreal-dev' },
-  { label: 'Game Dev', href: '/services/game-dev' },
+  { label: 'Game Development', href: '/services/game-dev' },
   { label: 'VFX', href: '/services/motion-vfx' },
-  { label: 'AI Content', href: '/services/ai-content' },
+  { label: 'AI Solutions', href: '/services/ai-solutions' },
   { label: 'Web Development', href: '/services/web-dev' },
   { label: 'Vibe Coding', href: '/services/vibe-coding' },
-  { label: 'AI Agents & Automations', href: '/services/ai-agents' },
-  { label: 'Virtual Environments', href: '/services/virtual-envs' },
 ];
 
 export const STARTUP_LINKS = [
@@ -28,123 +25,77 @@ export const SERVICES: ServiceItem[] = [
   {
     id: '3d-anim',
     title: '3D Design & Animation',
-    description: 'High-quality 3D content for commercial, architectural, and entertainment purposes.',
-    longDescription: 'We craft immersive 3D narratives that blur the line between reality and digital art. From high-fidelity product renders to cinematic character animation, our pipeline is optimized for visual impact.',
-    tags: ['Product Modeling', 'Cinematics', 'Advertising', 'Character Rigging'],
+    description: 'Premium 3D modeling, product visualization, and character animation for commercial, architectural, and entertainment projects.',
+    longDescription: 'Transform your vision into photorealistic 3D reality. We create stunning product renders for e-commerce and marketing, cinematic character animations for storytelling, and high-fidelity 3D assets for any commercial purpose. Our pipeline delivers broadcast-quality visuals optimized for your specific platform—whether it\'s social media, television, or print advertising.',
+    tags: ['Product Rendering', 'Character Animation', 'Commercial CGI', 'Asset Creation'],
     iconName: 'Box',
     route: '/services/3d-anim'
   },
   {
     id: 'arch-viz',
     title: 'Architectural Visualization',
-    description: 'Interior and exterior visualization with real-world accuracy.',
-    longDescription: 'Transforming blueprints into photorealistic experiences. We specialize in luxury interior walkthroughs, exterior environment rendering, and VR-ready architectural tours using Ray-Tracing technology.',
-    tags: ['Real Estate', 'VR Walkthroughs', 'Exterior Renders', 'Interior Design'],
+    description: 'Photorealistic interior and exterior renders, VR walkthroughs, and architectural presentations for real estate and developers.',
+    longDescription: 'Bring architectural visions to life before they\'re built. We specialize in creating stunning photorealistic renders for real estate marketing, developer presentations, and investor pitches. Our services include luxury interior visualizations, dramatic exterior renders with lifelike lighting, and fully immersive VR walkthroughs that let clients experience spaces before construction begins. Built with ray-tracing technology for unmatched realism.',
+    tags: ['Real Estate Marketing', 'VR Walkthroughs', 'Photorealistic Renders', 'Developer Presentations'],
     iconName: 'Building',
     route: '/services/arch-viz'
   },
   {
-    id: 'unreal-dev',
-    title: 'Unreal Engine Development',
-    description: 'Real-time architectural visualization, virtual production for film/ads, and interactive experiences.',
-    longDescription: 'Leveraging the power of Unreal Engine 5 to build real-time applications, virtual production sets for film, and interactive pixel-streaming experiences for the web.',
-    tags: ['Virtual Production', 'Real-time', 'Interactive', 'Pixel Streaming'],
-    iconName: 'Cpu',
-    route: '/services/unreal-dev'
-  },
-  {
     id: 'game-dev',
     title: 'Game Development',
-    description: 'Environment design, game-ready assets, level concepts, and interactive simulations.',
-    longDescription: 'From concept art to playable prototypes. We design immersive game environments, optimized assets, and mechanics that drive engagement in the gaming industry.',
-    tags: ['Level Design', 'Assets', 'Prototypes', 'Unity/Unreal'],
+    description: 'Professional game development powered by Unreal Engine 5. Immersive environments, real-time visualization, interactive experiences, and virtual production.',
+    longDescription: 'We specialize in game development using Unreal Engine 5, the industry-leading platform for creating stunning real-time experiences. From photorealistic game environments and interactive simulations to virtual production for film and advertising, we deliver pixel-perfect execution. Our expertise spans level design, game-ready asset creation, real-time rendering, interactive mechanics, and pixel-streaming experiences for web deployment.',
+    tags: ['Unreal Engine 5', 'Level Design', 'Game Assets', 'Real-time Rendering', 'Virtual Production', 'Interactive Experiences', 'Pixel Streaming'],
     iconName: 'Gamepad2',
     route: '/services/game-dev'
   },
   {
     id: 'motion-vfx',
     title: 'Motion Graphics & VFX',
-    description: 'Dynamic visual content for brands, social media, and digital campaigns.',
-    longDescription: 'High-energy motion graphics and invisible VFX. We create title sequences, compositing for film, and social media content that stops the scroll.',
-    tags: ['VFX', 'Social Media', 'Branding', 'Compositing'],
+    description: 'Eye-catching motion graphics and visual effects for brand campaigns, social media content, and commercial video production.',
+    longDescription: 'Create content that stops the scroll and captivates audiences. From dynamic logo animations and brand identity motion to seamless VFX compositing for commercials, we craft visuals that elevate your brand story. Perfect for social media campaigns, product launches, title sequences, and post-production enhancement. Our motion work combines technical precision with creative storytelling to deliver maximum impact.',
+    tags: ['Brand Animation', 'Social Media Content', 'Commercial VFX', 'Title Sequences'],
     iconName: 'Zap',
     route: '/services/motion-vfx'
   },
   {
-    id: 'ai-content',
-    title: 'AI-Driven Content',
-    description: 'Integrating AI for image/video generation, design concepts, and music.',
-    longDescription: 'Pixcident is at the forefront of the Generative AI revolution. We train custom models and utilize stable diffusion pipelines to accelerate concepting and asset generation.',
-    tags: ['GenAI', 'Automation', 'R&D', 'Custom Models'],
+    id: 'ai-solutions',
+    title: 'AI Solutions & Automation',
+    description: 'Intelligent automation and AI-powered creative workflows. Scale your production with custom AI agents and generative asset pipelines.',
+    longDescription: 'Leverage the power of artificial intelligence to revolutionize your creative and business operations. We build custom AI agents for workflow automation, research, and data processing, alongside generative AI pipelines for rapid concepting and asset creation. Our solutions bridge the gap between creative mastery and technical efficiency, allowing you to scale output without compromising on quality. From local privacy-first AI setups to autonomous content operations, we deliver the future of intelligent production.',
+    tags: ['AI Agents', 'Workflow Automation', 'Generative AI', 'Content Operations', 'Custom AI Models', 'Privacy-First'],
     iconName: 'Bot',
-    route: '/services/ai-content'
+    route: '/services/ai-solutions'
   },
   {
     id: 'web-dev',
     title: 'Web Development',
-    description: 'High-performance websites and webapps with modern UX and effects.',
-    longDescription: 'End-to-end web development: responsive UI/UX, modular architecture, performance budgets, accessibility-first, and production-grade deployments. We build landing pages, SaaS dashboards, marketing sites, and interactive experiences.',
-    tags: ['React', 'Vite', 'Tailwind', 'SSR', 'SEO', 'Performance'],
+    description: 'Modern, high-performance websites and web applications. From landing pages to SaaS platforms, built for conversion and user experience.',
+    longDescription: 'Build digital experiences that convert visitors into customers. We create lightning-fast, responsive websites and web applications using modern frameworks like React, Next.js, and Vite. Our expertise includes conversion-optimized landing pages, feature-rich SaaS dashboards, e-commerce platforms, and interactive brand experiences. Every project is built with SEO best practices, accessibility standards, and performance optimization from day one.',
+    tags: ['React', 'Next.js', 'SEO Optimized', 'SaaS Development', 'Landing Pages', 'Performance'],
     iconName: 'Globe',
     route: '/services/web-dev'
   },
   {
     id: 'vibe-coding',
     title: 'Vibe Coding',
-    description: 'Expressive, aesthetic-driven coding for immersive digital experiences.',
-    longDescription: 'We craft playful, experimental, and visually rich apps and sites—where code meets art. Expect glitch, parallax, kinetic layouts, and ambient motion with real-time interactions.',
-    tags: ['Experiments', 'Motion', 'Parallax', 'Kinetic UI'],
+    description: 'Experimental, emotion-driven digital experiences. Where code becomes art through motion, interaction, and atmosphere.',
+    longDescription: 'Push beyond conventional web design into the realm of digital art. Vibe Coding is our approach to creating experimental, aesthetically-driven experiences that prioritize emotion and atmosphere. Think parallax storytelling, glitch aesthetics, kinetic typography, generative visuals, and ambient interactions. Perfect for creative portfolios, art installations, experimental brand campaigns, and projects where the experience itself is the message.',
+    tags: ['Experimental Design', 'Motion Design', 'Parallax', 'Kinetic UI', 'Digital Art'],
     iconName: 'Terminal',
     route: '/services/vibe-coding'
   },
-  {
-    id: 'ai-agents',
-    title: 'AI Agents & Automations',
-    description: 'Local AI agents, agentic workflows, and automation pipelines.',
-    longDescription: 'We design and run local AI agents, build agentic automations, and integrate tool-use for content ops, research, and dev workflows. Privacy-first local setups and production orchestration.',
-    tags: ['Agents', 'Tool-use', 'Workflows', 'Local-first'],
-    iconName: 'Bot',
-    route: '/services/ai-agents'
-  },
-  {
-    id: 'virtual-envs',
-    title: 'Virtual Environments',
-    description: 'Interactive virtual spaces and simulations for web and desktop.',
-    longDescription: 'From interactive showrooms to virtual stages, we build environments that blend 3D, web tech, and realtime rendering. Deployed to the browser or native runtimes.',
-    tags: ['3D', 'Realtime', 'Simulation', 'Showrooms'],
-    iconName: 'Box',
-    route: '/services/virtual-envs'
-  },
+
+
 ];
 
 export const TEAM_MEMBERS = [
   {
     id: 1,
-    name: "Alex V.",
-    role: "Founder & Creative Director",
-    bio: "Ex-ILM VFX artist with 15 years in procedural generation.",
+    name: "Faheem Fiaz",
+    role: "Founder & Creative Technologist",
+    bio: "Multi-disciplinary artist and engineer specializing in 3D production, Unreal Engine development, and AI-driven workflows. Building the future of creative ecosystems at Pixcident.",
     image: "/assets/pixcident owner.png"
-  },
-  {
-    id: 2,
-    name: "Sarah K.",
-    role: "CTO / Lead Engine Dev",
-    bio: "Unreal Engine specialist focusing on real-time rendering pipelines.",
-    image: "https://placehold.co/400x400/111/FFF?text=Sarah"
-  },
-  {
-    id: 3,
-    name: "Marcus J.",
-    role: "Head of AI R&D",
-    bio: "Machine learning engineer bridging the gap between diffusion models and 3D mesh.",
-    image: "https://placehold.co/400x400/111/FFF?text=Marcus"
-  },
-  {
-    id: 4,
-    name: "Elena R.",
-    role: "Art Director",
-    bio: "Award-winning designer with a focus on futuristic UI/UX and motion.",
-    image: "https://placehold.co/400x400/111/FFF?text=Elena"
   }
 ];
 
@@ -229,25 +180,17 @@ export const PORTFOLIO: PortfolioItem[] = [
   {
     id: 'p9',
     title: 'Agentic Automation',
-    category: 'AI Agents',
+    category: 'AI Solutions',
     image: '/assets/pixcident owner.png',
     description: 'Local agent workflows for research, content ops, and dev tasks.',
     url: 'https://example.com/agents'
   },
-  {
-    id: 'p10',
-    title: 'Virtual Showroom',
-    category: 'Virtual Environments',
-    image: '/assets/INDOOR-POOL-RENDER.jpg',
-    description: 'Interactive 3D showroom with realtime lighting and navigation.',
-    url: 'https://example.com/showroom'
-  },
 ];
 
 export const SYSTEM_PROMPT = `
-You are the AI Assistant for Pixcident, a multidisciplinary creative studio and startup platform.
+You are the AI Assistant for Pixcident, a multidisciplinary creative studio and startup platform founded by Faheem Fiaz.
 Your goal is to answer questions about Pixcident's services, identity, and startup investment opportunities.
-Core Domains: 3D Design, ArchViz, Unreal Engine Dev, Game Dev, Motion Graphics, AI Content, Simulations.
+Core Services: 3D Design & Animation, Architectural Visualization, Game Development (Unreal Engine), Motion Graphics & VFX, AI Solutions & Automation, Web Development, Vibe Coding.
 Startup Info: Pixcident is raising funds to build a next-gen creative asset platform "Pixcident Core".
 Tone: Professional, futuristic, creative, and concise.
 Theme: Orange, White, Black.
