@@ -1,3 +1,12 @@
+export interface ProjectItem {
+  id: string;
+  title: string;
+  type: 'image' | 'video';
+  src: string;
+  width?: string; // class name for width
+  height?: string; // class name for height
+}
+
 export interface ServiceItem {
   id: string;
   title: string;
@@ -6,6 +15,7 @@ export interface ServiceItem {
   tags: string[];
   iconName: string; // Mapping to Lucide icons
   route: string;
+  projects?: ProjectItem[];
 }
 
 export interface PortfolioItem {

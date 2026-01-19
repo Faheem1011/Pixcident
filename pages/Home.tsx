@@ -5,6 +5,7 @@ import Hero from '../components/Hero';
 import ServicesSection from '../components/ServicesSection';
 import PortfolioSection from '../components/PortfolioSection';
 import ContactSection from '../components/ContactSection';
+import NewsletterSection from '../components/NewsletterSection';
 
 const Home: React.FC = () => {
   return (
@@ -173,6 +174,7 @@ const Home: React.FC = () => {
       </section>
 
       {/* <PortfolioSection />  Replaced by the new grid above */}
+      <NewsletterSection />
       <ContactSection />
     </>
   );

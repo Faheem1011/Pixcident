@@ -1,233 +1,237 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import SEO from '../../components/SEO';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { Target, Users, Globe, Cpu, Layers, Zap, ArrowRight, BarChart3, Terminal } from 'lucide-react';
-
-const SYSTEM_LOGS = [
-    "Initializing Core Protocol...",
-    "Connecting to Neural Grid...",
-    "Loading Dataset: ARCH_VIZ_V4...",
-    "Optimizing Mesh Topology...",
-    "Baking Lightmaps (4k)... [OK]",
-    "Generating Assets: 142 items...",
-    "User Session #4921 Active...",
-    "Rendering Preview Frame...",
-    "Physics Simulation: Stable...",
-    "Deploying to Cloud Node US-EAST..."
-];
+import { ArrowRight, Brain, Settings, ShieldCheck, TrendingUp, Globe, Layers, Lock, Cpu, Zap, Target } from 'lucide-react';
+import ProductShowcase from '../../components/ProductShowcase';
+import {
+    SAAS_PRODUCTS,
+    VISION,
+    MISSION_PILLARS,
+    COMPETITIVE_ADVANTAGES,
+    MARKET
+} from '../../startup-constants';
 
 const StartupLanding: React.FC = () => {
-    const [logs, setLogs] = useState<string[]>([]);
-    const scrollRef = useRef<HTMLDivElement>(null);
-
-    // Fake Terminal Logic
-    useEffect(() => {
-        let index = 0;
-        const interval = setInterval(() => {
-            setLogs(prev => {
-                const newLogs = [...prev, SYSTEM_LOGS[index % SYSTEM_LOGS.length]];
-                if (newLogs.length > 8) newLogs.shift();
-                return newLogs;
-            });
-            index++;
-        }, 1500);
-        return () => clearInterval(interval);
-    }, []);
+    const iconMap: Record<string, React.ComponentType<any>> = {
+        Brain, Settings, ShieldCheck, TrendingUp, Globe, Layers, Lock, Cpu, Zap, Target
+    };
 
     return (
         <div className="bg-brand-black min-h-screen pt-24 relative overflow-hidden">
             <SEO
-                title="Pixcident Core - Infinite Worlds"
-                description="The Engine for Infinite Worlds. Pixcident Core is a generative infrastructure layer allowing brands to create studio-quality 3D assets at scale."
+                title="PIXCIDENT - AI SaaS Infrastructure"
+                description="AI-Powered SaaS Infrastructure for Commerce, Trading, and Automation. Multiple revenue engines powering the future of intelligent business operations."
                 image="/assets/portfolio/vfx-1.png"
             />
 
-            {/* Moving Cyber Grid Background */}
-            <div className="absolute inset-0 z-0 perspective-1000 overflow-hidden pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-b from-brand-black via-transparent to-brand-black z-10" />
-                <div className="w-[200%] h-[200%] absolute -left-[50%] -top-[50%] bg-[linear-gradient(to_right,#1e3a8a_1px,transparent_1px),linear-gradient(to_bottom,#1e3a8a_1px,transparent_1px)] bg-[size:50px_50px] opacity-20 transform rotate-x-60 animate-grid-flow" />
-            </div>
+            {/* Background Elements */}
+            <div className="absolute inset-0 bg-gradient-to-b from-blue-950/20 via-transparent to-green-950/20 pointer-events-none" />
 
-            {/* Startup Hero */}
-            <section className="relative py-32 px-6 border-b border-blue-900/30 overflow-hidden">
-                {/* Glowing Orb */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none" />
+            {/* Hero Section */}
+            <section className="relative py-32 px-6 overflow-hidden">
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-blue-600/10 blur-[150px] rounded-full" />
 
                 <div className="container mx-auto text-center relative z-10">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        className="inline-flex items-center gap-2 bg-blue-900/30 text-blue-400 border border-blue-500/30 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-8 backdrop-blur-md"
+                        className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-900/30 to-green-900/30 text-blue-400 border border-blue-500/30 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-widest mb-8 backdrop-blur-md"
                     >
-                        <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-                        Pixcident Core v1.0
+                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                        Multi-Product AI SaaS Platform
                     </motion.div>
 
                     <h1 className="text-6xl md:text-8xl font-display font-bold text-white mb-8 leading-tight tracking-tighter">
-                        The Engine for <br /> <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Infinite Worlds</span>
+                        AI Systems That <br />
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-green-400 to-cyan-300">
+                            Run Your Business
+                        </span>
                     </h1>
 
-                    <p className="text-xl md:text-2xl text-zinc-400 max-w-3xl mx-auto mb-12 font-light">
-                        We are productizing our internal 3D pipeline. "Pixcident Core" is a generative infrastructure layer allowing brands to create studio-quality 3D assets at scale, instantly.
+                    <p className="text-xl md:text-2xl text-zinc-300 max-w-4xl mx-auto mb-4 font-light leading-relaxed">
+                        PIXCIDENT is a multi-product SaaS company building practical, revenue-generating AI tools for modern digital businesses.
+                    </p>
+
+                    <p className="text-lg text-zinc-400 max-w-3xl mx-auto mb-12 italic">
+                        "AI that replaces manual systems, not people."
                     </p>
 
                     <div className="flex flex-col md:flex-row gap-6 justify-center">
-                        <Link to="/startup/invest" className="bg-blue-600 hover:bg-blue-500 text-white px-10 py-4 rounded font-bold text-lg transition-all shadow-[0_0_20px_rgba(37,99,235,0.4)] hover:shadow-[0_0_40px_rgba(37,99,235,0.6)] uppercase tracking-wide">
-                            View Pitch Deck
+                        <Link to="/startup/invest" className="group bg-gradient-to-r from-blue-600 to-green-600 hover:from-blue-500 hover:to-green-500 text-white px-10 py-4 rounded-lg font-bold text-lg transition-all shadow-[0_0_30px_rgba(37,99,235,0.3)] hover:shadow-[0_0_50px_rgba(16,185,129,0.4)] uppercase tracking-wide flex items-center justify-center gap-2">
+                            View Investor Pitch
+                            <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
                         </Link>
-                        <Link to="/startup/donate" className="bg-zinc-900 hover:bg-zinc-800 border border-zinc-700 hover:border-zinc-500 text-white px-10 py-4 rounded font-bold text-lg transition-all uppercase tracking-wide">
+                        <Link to="/startup/donate" className="bg-zinc-900 hover:bg-zinc-800 border-2 border-zinc-700 hover:border-green-500/50 text-white px-10 py-4 rounded-lg font-bold text-lg transition-all uppercase tracking-wide">
                             Support R&D
                         </Link>
                     </div>
                 </div>
             </section>
 
-            {/* Live System Status - THE "WOW" FACTOR */}
-            <section className="py-12 bg-zinc-950/80 border-b border-zinc-900">
-                <div className="container mx-auto px-6 max-w-4xl">
-                    <div className="bg-black border border-zinc-800 rounded-lg overflow-hidden font-mono text-xs md:text-sm shadow-2xl">
-                        <div className="bg-zinc-900 px-4 py-2 border-b border-zinc-800 flex justify-between items-center">
-                            <div className="flex gap-2">
-                                <div className="w-3 h-3 rounded-full bg-red-500" />
-                                <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                                <div className="w-3 h-3 rounded-full bg-green-500" />
-                            </div>
-                            <span className="text-zinc-500">system_status.log - bash</span>
-                        </div>
-                        <div className="p-6 h-48 overflow-hidden relative">
-                            <div className="absolute top-0 right-0 p-4 text-green-500 opacity-20">
-                                <Terminal size={48} />
-                            </div>
-                            <div className="space-y-2 text-zinc-400">
-                                {logs.map((log, i) => (
-                                    <motion.div
-                                        key={i}
-                                        initial={{ opacity: 0, x: -10 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        className="flex gap-3"
-                                    >
-                                        <span className="text-blue-500">[{new Date().toLocaleTimeString()}]</span>
-                                        <span className={log.includes("OK") ? "text-green-400" : "text-zinc-300"}>{log}</span>
-                                    </motion.div>
-                                ))}
+            {/* Vision & Mission */}
+            <section className="py-24 border-t border-zinc-900 bg-zinc-950/50">
+                <div className="container mx-auto px-6">
+                    <div className="max-w-4xl mx-auto text-center mb-16">
+                        <h2 className="text-blue-500 font-mono text-sm mb-4 tracking-widest uppercase">Our Vision</h2>
+                        <p className="text-3xl md:text-4xl font-display font-bold text-white leading-relaxed">
+                            {VISION}
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+                        {MISSION_PILLARS.map((pillar, i) => {
+                            const Icon = iconMap[pillar.icon];
+                            return (
                                 <motion.div
-                                    animate={{ opacity: [0, 1, 0] }}
-                                    transition={{ repeat: Infinity, duration: 0.8 }}
-                                    className="w-2 h-4 bg-blue-500 inline-block align-middle"
-                                />
-                            </div>
-                        </div>
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.1 }}
+                                    className="bg-gradient-to-br from-zinc-900 to-zinc-950 border border-zinc-800 p-6 rounded-xl hover:border-blue-500/50 transition-colors text-center group"
+                                >
+                                    <div className="bg-blue-900/20 text-blue-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                        {Icon && <Icon size={28} />}
+                                    </div>
+                                    <h3 className="text-white font-bold mb-2">{pillar.title}</h3>
+                                    <p className="text-zinc-400 text-sm">{pillar.description}</p>
+                                </motion.div>
+                            );
+                        })}
                     </div>
                 </div>
             </section>
 
-            {/* The Pitch - Problem/Solution */}
-            <section className="py-24 relative z-10 bg-zinc-950/50">
+            {/* Product Suite */}
+            <section className="py-24 border-t border-zinc-900 relative">
                 <div className="container mx-auto px-6">
-                    <div className="flex flex-col md:flex-row gap-16 items-center mb-24">
-                        <div className="flex-1">
-                            <h2 className="text-blue-500 font-mono text-sm mb-4 tracking-widest">THE BOTTLENECK</h2>
-                            <h3 className="text-4xl font-display font-bold text-white mb-6">3D Creation is Unscalable.</h3>
-                            <p className="text-zinc-400 text-lg leading-relaxed mb-6">
-                                The Metaverse, AR/VR, and Gaming industries are exploding, demanding millions of 3D assets. Yet, the current workflow is manual, expensive, and requires senior talent.
-                            </p>
-                            <ul className="space-y-4">
-                                <li className="flex items-center gap-3 text-white"><span className="text-red-500 font-mono">X</span> Average Cost: $2,000 per complex asset</li>
-                                <li className="flex items-center gap-3 text-white"><span className="text-red-500 font-mono">X</span> Average Time: 4-5 days per asset</li>
-                                <li className="flex items-center gap-3 text-white"><span className="text-red-500 font-mono">X</span> Talent Shortage: 200k+ unfulfilled jobs</li>
-                            </ul>
-                        </div>
-                        <div className="flex-1 bg-zinc-900 border border-zinc-800 p-8 rounded-2xl relative">
-                            <div className="absolute -top-4 -right-4 bg-blue-600 text-white font-bold px-4 py-2 rounded uppercase text-sm">Traditional Workflow</div>
-                            <div className="space-y-4 opacity-50">
-                                <div className="h-4 bg-zinc-700 rounded w-3/4"></div>
-                                <div className="h-4 bg-zinc-700 rounded w-1/2"></div>
-                                <div className="h-32 bg-zinc-800 rounded w-full flex items-center justify-center border-2 border-dashed border-zinc-700">Manual Modeling...</div>
-                            </div>
-                        </div>
+                    <div className="text-center mb-16">
+                        <h2 className="text-green-500 font-mono text-sm mb-4 tracking-widest uppercase">Core Products</h2>
+                        <h3 className="text-5xl font-display font-bold text-white mb-6">
+                            Five Tightly Aligned SaaS Products
+                        </h3>
+                        <p className="text-xl text-zinc-400 max-w-3xl mx-auto">
+                            Each product operates independently while benefiting from shared infrastructure, data intelligence, and cross-selling opportunities.
+                        </p>
                     </div>
 
-                    <div className="flex flex-col md:flex-row-reverse gap-16 items-center">
-                        <div className="flex-1">
-                            <h2 className="text-green-500 font-mono text-sm mb-4 tracking-widest">THE SOLUTION</h2>
-                            <h3 className="text-4xl font-display font-bold text-white mb-6">Pixcident Core.</h3>
-                            <p className="text-zinc-400 text-lg leading-relaxed mb-6">
-                                A proprietary Text-to-Mesh engine trained on our studio's high-fidelity dataset. We automate the geometry, UV mapping, and texturing process.
-                            </p>
-                            <ul className="space-y-4">
-                                <li className="flex items-center gap-3 text-white"><span className="text-green-500 font-mono">✓</span> Cost: $0.50 per asset</li>
-                                <li className="flex items-center gap-3 text-white"><span className="text-green-500 font-mono">✓</span> Time: 20 seconds generation</li>
-                                <li className="flex items-center gap-3 text-white"><span className="text-green-500 font-mono">✓</span> Topology: Game-ready Quad mesh</li>
-                            </ul>
-                        </div>
-                        <div className="flex-1 bg-gradient-to-br from-blue-900/20 to-zinc-900 border border-blue-500/50 p-8 rounded-2xl relative overflow-hidden">
-                            <div className="absolute inset-0 bg-blue-500/5 z-0 animate-pulse"></div>
-                            <div className="relative z-10 text-center">
-                                <Cpu size={64} className="text-blue-400 mx-auto mb-6" />
-                                <h4 className="text-2xl font-bold text-white mb-2">Generative Engine</h4>
-                                <p className="text-blue-200 text-sm">Processing...</p>
-                            </div>
-                        </div>
-                    </div>
+                    <ProductShowcase products={SAAS_PRODUCTS} />
                 </div>
             </section>
 
-            {/* Roadmap */}
-            <section className="py-24 border-t border-zinc-900">
+            {/* Market Opportunity */}
+            <section className="py-24 border-t border-zinc-900 bg-gradient-to-br from-blue-950/10 to-green-950/10">
                 <div className="container mx-auto px-6">
-                    <h2 className="text-4xl font-display font-bold text-center text-white mb-16">Deployment Roadmap</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                    <div className="text-center mb-16">
+                        <h2 className="text-blue-500 font-mono text-sm mb-4 tracking-widest uppercase">Market Opportunity</h2>
+                        <h3 className="text-5xl font-display font-bold text-white mb-6">
+                            Massive Addressable Market
+                        </h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6 max-w-5xl mx-auto mb-12">
                         {[
-                            { title: 'Phase 1: Alpha', date: 'Q1 2025', desc: 'Internal tool validation with current studio clients.' },
-                            { title: 'Phase 2: Closed Beta', date: 'Q3 2025', desc: 'SaaS rollout to 50 partner agencies.' },
-                            { title: 'Phase 3: Public API', date: 'Q1 2026', desc: 'Open API for game developers and platforms.' },
-                            { title: 'Phase 4: Marketplace', date: 'Q4 2026', desc: 'Peer-to-peer asset training and trading.' },
-                        ].map((phase, i) => (
-                            <div key={i} className="bg-zinc-900 p-6 rounded-lg border border-zinc-800 relative group hover:border-blue-500 transition-colors">
-                                <div className="text-blue-500 font-mono text-xs mb-2">{phase.date}</div>
-                                <h4 className="text-white font-bold text-lg mb-2">{phase.title}</h4>
-                                <p className="text-zinc-500 text-sm">{phase.desc}</p>
-                                {i < 3 && <div className="hidden md:block absolute -right-6 top-1/2 -translate-y-1/2 text-zinc-700"><ArrowRight /></div>}
-                            </div>
+                            { label: 'TAM', value: MARKET.tam, desc: 'Total Addressable Market' },
+                            { label: 'SAM', value: MARKET.sam, desc: 'Serviceable Available Market' },
+                            { label: 'SOM', value: MARKET.som, desc: 'Serviceable Obtainable Market' },
+                            { label: 'Growth', value: MARKET.growthRate, desc: 'Industry CAGR' }
+                        ].map((metric, i) => (
+                            <motion.div
+                                key={i}
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                whileInView={{ opacity: 1, scale: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: i * 0.1 }}
+                                className="bg-zinc-950 border border-blue-500/30 p-8 rounded-xl text-center"
+                            >
+                                <p className="text-sm text-zinc-500 uppercase tracking-widest mb-2">{metric.label}</p>
+                                <p className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-green-400 bg-clip-text text-transparent mb-2">
+                                    {metric.value}
+                                </p>
+                                <p className="text-xs text-zinc-400">{metric.desc}</p>
+                            </motion.div>
                         ))}
                     </div>
+
+                    <div className="max-w-4xl mx-auto bg-zinc-950 border border-zinc-800 rounded-xl p-8">
+                        <h4 className="text-white font-bold mb-4 text-center">Industry Pain Points We Solve</h4>
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                            {[
+                                { title: 'Manual Forecasting', impact: 'Costs businesses $50B annually in lost revenue' },
+                                { title: 'System Inefficiency', impact: '40% of time wasted on repetitive tasks' },
+                                { title: 'Poor Decision Making', impact: '70% of traders lose money due to emotion' }
+                            ].map((pain, i) => (
+                                <div key={i} className="text-center">
+                                    <p className="text-red-400 font-bold mb-2">{pain.title}</p>
+                                    <p className="text-sm text-zinc-400">{pain.impact}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            {/* Business Model */}
-            <section className="py-24 bg-blue-950/20">
-                <div className="container mx-auto px-6 text-center">
-                    <h2 className="text-4xl font-display font-bold text-white mb-12">Business Model</h2>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                        <div className="p-8 bg-zinc-900 border border-zinc-800 rounded-xl">
-                            <Layers className="mx-auto text-blue-400 mb-4" size={32} />
-                            <h3 className="text-xl font-bold text-white mb-2">SaaS Subscription</h3>
-                            <p className="text-zinc-400">$49/mo for pro creators for unlimited standard generations.</p>
-                        </div>
-                        <div className="p-8 bg-zinc-900 border border-zinc-800 rounded-xl">
-                            <Zap className="mx-auto text-yellow-400 mb-4" size={32} />
-                            <h3 className="text-xl font-bold text-white mb-2">Compute Credits</h3>
-                            <p className="text-zinc-400">Pay-as-you-go for high-fidelity 4K texture baking and rigging.</p>
-                        </div>
-                        <div className="p-8 bg-zinc-900 border border-zinc-800 rounded-xl">
-                            <BarChart3 className="mx-auto text-green-400 mb-4" size={32} />
-                            <h3 className="text-xl font-bold text-white mb-2">Enterprise API</h3>
-                            <p className="text-zinc-400">Custom model training on brand IP for large studios.</p>
-                        </div>
+            {/* Why PIXCIDENT Wins */}
+            <section className="py-24 border-t border-zinc-900">
+                <div className="container mx-auto px-6">
+                    <div className="text-center mb-16">
+                        <h2 className="text-green-500 font-mono text-sm mb-4 tracking-widest uppercase">Competitive Advantages</h2>
+                        <h3 className="text-5xl font-display font-bold text-white mb-6">
+                            Why PIXCIDENT Wins
+                        </h3>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                        {COMPETITIVE_ADVANTAGES.map((advantage, i) => {
+                            const Icon = iconMap[advantage.icon];
+                            return (
+                                <motion.div
+                                    key={i}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    whileInView={{ opacity: 1, y: 0 }}
+                                    viewport={{ once: true }}
+                                    transition={{ delay: i * 0.1 }}
+                                    className="bg-gradient-to-br from-zinc-950 to-zinc-900 border border-green-500/30 p-8 rounded-xl hover:border-green-500 transition-all group"
+                                >
+                                    <div className="bg-green-900/20 text-green-400 w-14 h-14 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                                        {Icon && <Icon size={24} />}
+                                    </div>
+                                    <h4 className="text-xl font-bold text-white mb-3">{advantage.title}</h4>
+                                    <p className="text-zinc-400">{advantage.description}</p>
+                                </motion.div>
+                            );
+                        })}
+                    </div>
+
+                    <div className="max-w-4xl mx-auto mt-16 text-center bg-gradient-to-r from-zinc-900 via-zinc-950 to-zinc-900 border-2 border-green-500/30 p-12 rounded-2xl">
+                        <p className="text-2xl text-white font-bold mb-4">
+                            PIXCIDENT is not a single SaaS tool.
+                        </p>
+                        <p className="text-xl text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-green-400">
+                            It is a modular AI business operating system for the modern digital economy.
+                        </p>
                     </div>
                 </div>
             </section>
 
             {/* CTA */}
-            <section className="py-24 bg-black border-t border-zinc-900">
+            <section className="py-24 border-t border-zinc-900 bg-gradient-to-br from-blue-950/20 to-green-950/20">
                 <div className="container mx-auto px-6 text-center">
-                    <h2 className="text-3xl font-display font-bold text-white mb-8 uppercase tracking-widest">
-                        Join the Revolution
+                    <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-8 uppercase tracking-wider">
+                        Ready to Scale Your Business?
                     </h2>
-                    <Link to="/startup/invest" className="inline-block bg-white text-black px-12 py-4 rounded font-bold uppercase tracking-wider hover:bg-zinc-200 transition-colors">
-                        Invest Now
-                    </Link>
+                    <p className="text-xl text-zinc-400 mb-12 max-w-2xl mx-auto">
+                        Join the AI revolution. Invest in the future of commerce automation.
+                    </p>
+                    <div className="flex flex-col md:flex-row gap-6 justify-center">
+                        <Link to="/startup/invest" className="bg-white text-black px-12 py-4 rounded-lg font-bold uppercase tracking-wider hover:bg-zinc-200 transition-colors text-lg">
+                            View Investment Opportunity
+                        </Link>
+                        <Link to="/startup/donate" className="bg-green-600 hover:bg-green-500 text-white px-12 py-4 rounded-lg font-bold uppercase tracking-wider transition-colors text-lg">
+                            Support Open-Source AI
+                        </Link>
+                    </div>
                 </div>
             </section>
         </div>

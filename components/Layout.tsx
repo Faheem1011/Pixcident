@@ -37,7 +37,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="container mx-auto px-6 flex justify-between items-center">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 flex items-center justify-center rounded-sm transform group-hover:rotate-12 transition-transform duration-300 shadow-[0_0_10px_rgba(255,85,0,0.5)]" style={{ minWidth: '40px', minHeight: '40px' }}>
+            <div className="w-10 h-10 min-w-[40px] min-h-[40px] flex items-center justify-center rounded-sm transform group-hover:rotate-12 transition-transform duration-300 shadow-[0_0_10px_rgba(255,85,0,0.5)]">
               <img
                 src="/logo.png"
                 alt="Pixcident"
@@ -69,7 +69,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="relative group h-full py-2" onMouseEnter={() => setHoveredLink('services')} onMouseLeave={() => setHoveredLink(null)}>
               <button
                 className="flex items-center gap-1 text-sm font-medium text-zinc-300 group-hover:text-brand-orange uppercase tracking-widest transition-colors"
-                aria-expanded={hoveredLink === 'services'}
+                aria-expanded={hoveredLink === 'services' ? "true" : "false"}
                 aria-haspopup="true"
               >
                 Services <ChevronDown size={14} />
@@ -90,7 +90,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <div className="relative group h-full py-2" onMouseEnter={() => setHoveredLink('startup')} onMouseLeave={() => setHoveredLink(null)}>
               <button
                 className="flex items-center gap-1 text-sm font-medium text-zinc-300 group-hover:text-brand-blue uppercase tracking-widest transition-colors"
-                aria-expanded={hoveredLink === 'startup'}
+                aria-expanded={hoveredLink === 'startup' ? "true" : "false"}
                 aria-haspopup="true"
               >
                 Startup <ChevronDown size={14} />
@@ -118,6 +118,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             className="md:hidden text-white hover:text-brand-orange transition-colors p-3"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={isMobileMenuOpen ? "true" : "false"}
           >
             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -167,7 +168,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       </main>
 
       {/* FOOTER */}
-      <footer className="bg-[#0A0A0A] text-white pt-20 pb-10 border-t border-zinc-900 z-10 relative" style={{ minHeight: '500px' }}>
+      <footer className="bg-[#0A0A0A] text-white pt-20 pb-10 border-t border-zinc-900 z-10 relative min-h-[500px]">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
 

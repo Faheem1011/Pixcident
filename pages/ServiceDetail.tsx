@@ -23,13 +23,13 @@ const ServiceDetail: React.FC = () => {
   }
 
   const HERO_IMAGES: Record<string, string> = {
-    'web-dev': '/assets/services/web-dev.jpg',
-    'vibe-coding': '/assets/portfolio/abstract-1.jpg',
-    'ai-solutions': '/assets/services/ai-brain.jpg',
+    'web-dev': '/assets/services/web-dev.png',
+    'vibe-coding': '/assets/services/vibe-coding.png',
+    'ai-solutions': '/assets/services/ai-solutions.png',
     '3d-anim': '/assets/portfolio/product-4.png',
     'arch-viz': '/assets/portfolio/archviz-1.jpg',
-    'game-dev': '/assets/services/game-dev.jpg',
-    'motion-vfx': '/assets/portfolio/vfx-2.png',
+    'game-dev': '/assets/services/game-dev.png',
+    'motion-vfx': '/assets/services/motion-vfx.png',
   };
   const heroImage = HERO_IMAGES[service.id] || `https://placehold.co/1920x1080/050505/333?text=${encodeURIComponent(service.title)}+Header`;
 
@@ -97,29 +97,37 @@ const ServiceDetail: React.FC = () => {
 
           {/* Masonry-ish Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
-            {[1, 2, 3, 4, 5, 6].map((item, i) => {
-              const isLarge = i === 0 || i === 3; // Make some items span 2 cols
-              const width = isLarge ? 800 : 400;
-              const height = isLarge ? 600 : 300;
-
+            {service.projects?.map((item, i) => {
+              const className = item.width || '';
               return (
                 <motion.div
-                  key={item}
+                  key={item.id}
                   initial={{ opacity: 0, y: 50 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className={`group relative overflow-hidden bg-zinc-900 border border-zinc-800 rounded-lg cursor-pointer ${isLarge ? 'md:col-span-2 md:row-span-2' : ''}`}
+                  className={`group relative overflow-hidden bg-zinc-900 border border-zinc-800 rounded-lg cursor-pointer ${className}`}
                 >
-                  <img
-                    src={`https://placehold.co/${width}x${height}/111/444?text=Project+${item}`}
-                    alt={`${service.title} project ${item} showcase`}
-                    className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-in-out"
-                    loading="lazy"
-                  />
+                  {item.type === 'video' ? (
+                    <video
+                      src={item.src}
+                      className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-in-out"
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    />
+                  ) : (
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-in-out"
+                      loading="lazy"
+                    />
+                  )}
 
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
-                    <h3 className="text-2xl font-bold text-white uppercase mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Project Name {item}</h3>
+                    <h3 className="text-2xl font-bold text-white uppercase mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">{item.title}</h3>
                     <p className="text-brand-orange font-mono text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">View Case Study</p>
                   </div>
                 </motion.div>
