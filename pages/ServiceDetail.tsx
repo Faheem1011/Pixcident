@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import SEO from '../components/SEO';
 import { useParams, Link } from 'react-router-dom';
-import { SERVICES, PORTFOLIO } from '../constants';
+import { SERVICES } from '../constants';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, ArrowRight } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
@@ -92,53 +92,39 @@ const ServiceDetail: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="flex items-end justify-between mb-12 border-b border-zinc-800 pb-6">
             <h2 className="text-4xl font-display font-bold text-white uppercase">Selected Projects</h2>
-            <span className="text-zinc-500 font-mono">Real Results</span>
+            <span className="text-zinc-500 font-mono">01 // 06</span>
           </div>
 
-          {/* Dynamic Portfolio Grid */}
+          {/* Masonry-ish Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-[300px]">
-            {PORTFOLIO.filter(p => {
-              // Simple mapping or inclusion check
-              const normalize = (s: string) => s.toLowerCase().replace(/ /g, '-');
-              const pCat = normalize(p.category);
-              const sId = service.id;
-              // Map service ID to portfolio category keywords
-              if (sId === '3d-anim' && pCat.includes('3d')) return true;
-              if (sId === 'arch-viz' && pCat.includes('arch')) return true;
-              if (sId === 'game-dev' && (pCat.includes('game') || pCat.includes('unreal'))) return true;
-              if (sId === 'motion-vfx' && pCat.includes('motion')) return true;
-              if (sId === 'web-dev' && pCat.includes('web')) return true;
-              if (sId === 'vibe-coding' && (pCat.includes('vibe') || pCat.includes('experimental'))) return true;
-              if (sId === 'ai-solutions' && pCat.includes('ai')) return true;
-              return false;
-            }).concat(PORTFOLIO.slice(0, 3)) // Fallback to show some items if none match exactly
-              .slice(0, 6) // Limit to 6
-              .map((item, i) => {
-                const isLarge = i === 0 || i === 3;
-                return (
-                  <motion.div
-                    key={item.id}
-                    initial={{ opacity: 0, y: 50 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className={`group relative overflow-hidden bg-zinc-900 border border-zinc-800 rounded-lg cursor-pointer ${isLarge ? 'md:col-span-2 md:row-span-2' : ''}`}
-                  >
-                    <img
-                      src={item.image}
-                      alt={item.description}
-                      className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-in-out"
-                      loading="lazy"
-                    />
+            {[1, 2, 3, 4, 5, 6].map((item, i) => {
+              const isLarge = i === 0 || i === 3; // Make some items span 2 cols
+              const width = isLarge ? 800 : 400;
+              const height = isLarge ? 600 : 300;
 
-                    <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
-                      <h3 className="text-2xl font-bold text-white uppercase mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">{item.title}</h3>
-                      <p className="text-brand-orange font-mono text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">{item.category}</p>
-                      <p className="text-zinc-300 text-xs mt-2 max-w-xs translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">{item.description}</p>
-                    </div>
-                  </motion.div>
-                )
-              })}
+              return (
+                <motion.div
+                  key={item}
+                  initial={{ opacity: 0, y: 50 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className={`group relative overflow-hidden bg-zinc-900 border border-zinc-800 rounded-lg cursor-pointer ${isLarge ? 'md:col-span-2 md:row-span-2' : ''}`}
+                >
+                  <img
+                    src={`https://placehold.co/${width}x${height}/111/444?text=Project+${item}`}
+                    alt={`${service.title} project ${item} showcase`}
+                    className="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-in-out"
+                    loading="lazy"
+                  />
+
+                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
+                    <h3 className="text-2xl font-bold text-white uppercase mb-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">Project Name {item}</h3>
+                    <p className="text-brand-orange font-mono text-sm translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">View Case Study</p>
+                  </div>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
@@ -152,17 +138,12 @@ const ServiceDetail: React.FC = () => {
                 Our <br /><span className="text-brand-orange">Workflow</span>
               </h2>
               <div className="space-y-0 relative border-l border-zinc-800 ml-4">
-                {[
-                  { title: 'Discovery & Strategy', desc: 'We dig deep into your brand goals. No guesswork, just a clear roadmap to ROI.' },
-                  { title: 'Design & Prototyping', desc: 'We visualize the solution. You see exactly what you are getting before we build.' },
-                  { title: 'Production & Development', desc: 'We execute with technical precision using industry-standard tools and clean code.' },
-                  { title: 'Polish & Delivery', desc: 'We refine every pixel and line of code. You get a market-ready asset that converts.' }
-                ].map((step, idx) => (
+                {['Concept & Strategy', 'Design & Prototyping', 'Production & Development', 'Polish & Delivery'].map((step, idx) => (
                   <div key={idx} className="relative pl-12 py-8 group">
                     <div className="absolute -left-[5px] top-10 w-2.5 h-2.5 bg-zinc-800 rounded-full group-hover:bg-brand-orange transition-colors" />
-                    <h4 className="text-2xl font-bold text-zinc-500 group-hover:text-white transition-colors mb-2 uppercase">{step.title}</h4>
+                    <h4 className="text-2xl font-bold text-zinc-500 group-hover:text-white transition-colors mb-2 uppercase">{step}</h4>
                     <p className="text-zinc-500 text-sm max-w-sm group-hover:text-zinc-400 transition-colors">
-                      {step.desc}
+                      Executing with precision at every stage. We ensure transparency and quality control from start to finish.
                     </p>
                   </div>
                 ))}
@@ -205,11 +186,9 @@ const ServiceDetail: React.FC = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {service.tags.map((tag, i) => (
-              <div key={i} className="p-6 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-brand-orange/50 transition-colors group">
-                <h3 className="text-xl font-bold text-white mb-2 uppercase group-hover:text-brand-orange transition-colors">{tag}</h3>
-                <p className="text-zinc-400 text-sm">
-                  Specialized workflows designed to deliver high-impact {tag.toLowerCase()} for your brand.
-                </p>
+              <div key={i} className="p-6 bg-zinc-900 border border-zinc-800 rounded-xl">
+                <h3 className="text-xl font-bold text-white mb-2 uppercase">{tag}</h3>
+                <p className="text-zinc-400 text-sm">Deliverables, tooling, and example case studies tailored to {tag}.</p>
               </div>
             ))}
           </div>

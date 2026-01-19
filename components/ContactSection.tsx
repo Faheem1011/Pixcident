@@ -21,20 +21,12 @@ const ContactSection: React.FC = () => {
     };
 
     try {
-      const response = await fetch('https://api.web3forms.com/submit', {
+      const response = await fetch('/api/contact.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json'
         },
-        body: JSON.stringify({
-          access_key: import.meta.env.VITE_WEB3FORMS_ACCESS_KEY,
-          name: data.name,
-          email: data.email,
-          subject: `New Project Inquiry: ${data.projectType}`,
-          from_name: 'Pixcident Contact Form',
-          message: data.message
-        })
+        body: JSON.stringify(data)
       });
 
       const result = await response.json();
@@ -156,14 +148,7 @@ const ContactSection: React.FC = () => {
                   </div>
 
                   {/* Honeypot field - hidden from users, catches bots */}
-                  <input
-                    type="text"
-                    name="website"
-                    className="absolute -left-[9999px]"
-                    tabIndex={-1}
-                    autoComplete="off"
-                    aria-hidden="true"
-                  />
+                  <input type="text" name="website" className="absolute left-[-9999px]" tabIndex={-1} autoComplete="off" aria-label="Leave this field empty" />
 
                   <div className="flex flex-col gap-2 mb-8">
                     <label className="text-xs font-bold text-zinc-500 uppercase tracking-wider">Message</label>
