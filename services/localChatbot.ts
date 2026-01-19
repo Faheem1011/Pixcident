@@ -119,6 +119,49 @@ const chatPatterns: ChatPattern[] = [
             "Perfect! The best next step is a **free consultation**. Email us at Contact@pixcident.com or use the contact form below. We'll discuss your goals, recommend the right services, and provide a detailed quote. Sound good?",
             "I'd love to connect you with our team! **Email: Contact@pixcident.com** or scroll down to the contact form. We'll schedule a free 30-minute consultation to explore how we can help. Excited to work with you!"
         ]
+    },
+    // Location & Contact Details
+    {
+        keywords: ['location', 'where', 'office', 'based', 'address', 'area', 'country', 'city'],
+        category: 'location',
+        responses: [
+            "We are located in **Kingston, MA (USA)** at 74 Summer St #366. However, we serve clients globally! From US startups to international brands, we deliver world-class visuals remotely. Are you local or looking for remote collaboration?",
+            "Pixcident is based in **Massachusetts, USA**, with a global team of specialists. We work across time zones to ensure your project keeps moving 24/7. Where are you based?",
+            "Our headquarters is in **Kingston, MA**, but our digital studio is everywhere. We've optimized our workflow for seamless remote collaboration. Ready to work with a global standard team?"
+        ]
+    },
+
+    // Process & How it Works
+    {
+        keywords: ['process', 'work', 'how', 'step', 'start', 'begin', 'workflow'],
+        category: 'process',
+        responses: [
+            "Our process is simple and transparent: **1. Discovery** (we learn your goals), **2. Concept** (we show you options), **3. Production** (we build the magic), and **4. Delivery** (you get results). We keep you updated every step of the way. Ready to start Step 1?",
+            "We believe in **collaboration without confusion**. You get a clear timeline, regular updates, and opportunities for feedback at key milestones. No black boxes, just results. Want to hear how we'd approach your specific project?",
+            "Simple: **Discovery -> Design -> Develop -> Deliver**. We handle the complexity so you can focus on your business. We start with a free consultation to map out the plan. Shall we schedule that first chat?"
+        ]
+    },
+
+    // Tools & Tech Stack
+    {
+        keywords: ['tool', 'software', 'tech', 'stack', 'blender', 'maya', 'react', 'next', 'unreal', 'engine', 'coding'],
+        category: 'tech',
+        responses: [
+            "We use the industry's best tools: **Unreal Engine 5** for immersive experiences, **Blender/Maya** for high-end 3D, and **React/Next.js/Tailwind** for lightning-fast web. This ensures your project isn't just beautiful, but future-proof. Any specific tech requirements?",
+            "Our stack is cutting-edge: **Unreal Engine 5, Blender, React, Next.js, and Python** for AI. We pick the right tool for the job to ensure maximum performance and visual fidelity. Are you looking for a specific technology?",
+            "We are experts in **Unreal Engine 5** (Real-time), **Blender** (3D), and **Modern Web** (React/Next.js). This combination allows us to create cross-platform experiences others can't match. Want to see examples of our tech in action?"
+        ]
+    },
+
+    // Team & Company
+    {
+        keywords: ['team', 'who', 'founder', 'size', 'history', 'about', 'company', 'studio'],
+        category: 'about',
+        responses: [
+            "Pixcident is led by **Faheem Fiaz**, a multidisciplinary creative director. We are a boutique studio, which means you get **agency-quality work with personal attention**. No getting lost in a big corporate hierarchy. Want to know more about our background?",
+            "We are a specialized team of **3D artists, developers, and AI engineers**. Small enough to care, big enough to deliver enterprise-grade results. We view ourselves as your creative partners, not just vendors. Ready to meet your new team?",
+            "Pixcident was founded to bridge the gap between distinct creative fields. We combine **art, code, and strategy** under one roof. This integrated approach ensures your website matches your 3D product renders perfectly. Shall we join forces?"
+        ]
     }
 ];
 

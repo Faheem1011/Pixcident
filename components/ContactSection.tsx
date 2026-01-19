@@ -33,14 +33,7 @@ const ContactSection: React.FC = () => {
           email: data.email,
           subject: `New Project Inquiry: ${data.projectType}`,
           from_name: 'Pixcident Contact Form',
-          message: `
-            Name: ${data.name}
-            Email: ${data.email}
-            Project Type: ${data.projectType}
-            
-            Message:
-            ${data.message}
-          `
+          message: data.message
         })
       });
 

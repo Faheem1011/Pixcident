@@ -33,7 +33,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           email: subscribeEmail,
           subject: 'New Newsletter Subscriber',
           from_name: 'Pixcident Newsletter',
-          message: `New subscriber: ${subscribeEmail}`
+          message: 'Please subscribe this user to the newsletter.'
         })
       });
 
@@ -59,10 +59,78 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? 'bg-brand-black/90 backdrop-blur-lg border-b border-zinc-800 py-4' : 'bg-transparent py-6'
           }`}
       >
-        {/* ... */}
+        <div className="container mx-auto px-6 flex justify-between items-center">
+          <Link to="/" className="text-2xl font-display font-bold text-white tracking-tighter flex items-center gap-2 relative z-50">
+            <span className="text-brand-orange">PIX</span>CIDENT
+          </Link>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-8">
+            {NAV_LINKS.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-sm font-medium text-zinc-400 hover:text-white transition-colors uppercase tracking-wider"
+              >
+                {link.label}
+              </a>
+            ))}
+            <a
+              href="#contact"
+              className="px-6 py-2 bg-white text-black font-bold text-sm uppercase tracking-wider hover:bg-brand-orange hover:text-white transition-colors clip-path-slant"
+            >
+              Start Project
+            </a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button
+            className="md:hidden text-white relative z-50"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <AnimatePresence>
+          {isMobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              className="fixed inset-0 bg-brand-black/95 backdrop-blur-xl z-40 flex items-center justify-center"
+            >
+              <div className="flex flex-col items-center gap-8">
+                {NAV_LINKS.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="text-2xl font-display font-bold text-white hover:text-brand-orange transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+                <a
+                  href="#contact"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="px-8 py-3 bg-brand-orange text-white font-bold text-lg uppercase tracking-wider"
+                >
+                  Start Project
+                </a>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
-      {/* ... */}
+      {/* Progress Bar */}
+      <motion.div
+        className="fixed top-0 left-0 right-0 h-1 bg-brand-orange origin-left z-50"
+        style={{ scaleX: 0 }} // Simplified for now as useScroll hook is needed but keeping layout intact
+      />
 
       <main id="main" className="flex-grow">
         {children}
@@ -72,7 +140,49 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <footer className="bg-[#0A0A0A] text-white pt-20 pb-10 border-t border-zinc-900 z-10 relative min-h-[500px]">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            {/* ... (other footer columns) ... */}
+
+            {/* Column 1: Brand */}
+            <div>
+              <Link to="/" className="text-2xl font-display font-bold text-white tracking-tighter block mb-6">
+                <span className="text-brand-orange">PIX</span>CIDENT
+              </Link>
+              <div className="w-16 h-16 bg-white flex items-center justify-center mb-6">
+                <Drama className="text-brand-orange" size={32} />
+              </div>
+              <p className="text-zinc-500 text-sm leading-relaxed mb-6">
+                Welcome to Pixcident. Where imagination meets precision.
+              </p>
+            </div>
+
+            {/* Column 2: Services */}
+            <div>
+              <h3 className="font-display font-bold text-xl mb-6">Services</h3>
+              <div className="flex flex-col gap-3 text-zinc-400 text-sm">
+                <div>
+                  <Link to="/services/3d-animation" className="hover:text-brand-orange transition-colors">3D & Animation</Link>
+                </div>
+                <div>
+                  <Link to="/services/archviz" className="hover:text-brand-orange transition-colors">ArchViz</Link>
+                </div>
+                <div>
+                  <Link to="/services/game-development" className="hover:text-brand-orange transition-colors">Game Development</Link>
+                </div>
+                <div>
+                  <Link to="/services/vfx" className="hover:text-brand-orange transition-colors">VFX</Link>
+                </div>
+                <div>
+                  <Link to="/services/ai-solutions" className="hover:text-brand-orange transition-colors">AI Solutions</Link>
+                </div>
+                <div>
+                  <Link to="/services/web-development" className="hover:text-brand-orange transition-colors">Web Development</Link>
+                </div>
+                <div>
+                  <Link to="/services/vibe-coding" className="hover:text-brand-orange transition-colors">Vibe Coding</Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Column 3: Contact */}
             <div>
               <h3 className="font-display font-bold text-xl mb-6">Contact Us</h3>
               <div className="space-y-4 text-zinc-400 text-sm">
@@ -100,7 +210,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   ✓ Thanks for subscribing!
                 </div>
               ) : (
-                <form onSubmit={handleSubscribe} className="relative">
+                <form onSubmit={handleSubscribe} className="relative w-full">
                   <div className={`bg-black/50 p-1 rounded-lg border flex items-center mb-4 transition-colors ${subscribeStatus === 'error' ? 'border-red-500' : 'border-zinc-800 focus-within:border-brand-orange'}`}>
                     <input
                       type="email"
@@ -108,7 +218,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                       onChange={(e) => setSubscribeEmail(e.target.value)}
                       placeholder="email@pixcident.com"
                       required
-                      className="bg-transparent border-none text-white text-sm px-3 py-2 w-full focus:outline-none placeholder-zinc-600 disabled:opacity-50"
+                      className="bg-transparent border-none text-white text-sm px-3 py-2 flex-grow min-w-0 focus:outline-none placeholder-zinc-600 disabled:opacity-50"
                       aria-label="Subscribe to newsletter email"
                       disabled={subscribeStatus === 'loading'}
                     />
