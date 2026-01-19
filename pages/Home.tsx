@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import SEO from '../components/SEO';
 import Hero from '../components/Hero';
 import ServicesSection from '../components/ServicesSection';
@@ -10,17 +11,77 @@ const Home: React.FC = () => {
     <>
       <SEO />
       <Hero />
-      <div className="py-24 bg-brand-black text-center px-6">
-        <div className="container mx-auto">
-          <p className="text-2xl md:text-4xl font-display font-light leading-normal max-w-4xl mx-auto text-zinc-200">
-            "Pixcident is where <span className="text-brand-orange">creative vision meets technical excellence</span>. We're a full-spectrum creative studio delivering photorealistic 3D visualization, cutting-edge game development, and future-ready digital experiences. From concept to deployment, we transform ambitious ideas into <span className="text-brand-orange">stunning reality</span>."
-          </p>
+      <div className="py-24 bg-brand-black text-center px-6" id="value-prop">
+        <div className="container mx-auto max-w-5xl">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+          >
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-8 leading-tight">
+              You Have <span className="text-brand-orange">World-Changing Ideas</span>.<br />
+              But Without Stunning Visuals, They Stay Invisible.
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left mt-12">
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-brand-orange uppercase tracking-wide">The Problem</h3>
+                <ul className="text-zinc-300 text-lg leading-relaxed space-y-3">
+                  <li className="flex items-start gap-3">
+                    <span className="text-brand-orange mt-1">→</span>
+                    <span>Customers can't visualize products that don't exist yet</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-brand-orange mt-1">→</span>
+                    <span>Investors need to <em>see</em> your vision to fund it</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-brand-orange mt-1">→</span>
+                    <span>Generic websites blend in with competitors</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-brand-orange mt-1">→</span>
+                    <span>Manual creative work prevents you from scaling</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="space-y-4">
+                <h3 className="text-xl font-bold text-white uppercase tracking-wide">The Solution</h3>
+                <p className="text-zinc-300 text-lg leading-relaxed mb-6">
+                  We help businesses like yours turn concepts into reality with:
+                </p>
+                <ul className="text-white text-lg leading-relaxed space-y-3">
+                  <li className="flex items-start gap-3">
+                    <span className="text-green-500 font-bold mt-1">✓</span>
+                    <span><strong>3D renders</strong> that sell products before they're manufactured</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-green-500 font-bold mt-1">✓</span>
+                    <span><strong>Game environments</strong> that immerse and engage</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-green-500 font-bold mt-1">✓</span>
+                    <span><strong>Web experiences</strong> that convert visitors into customers</span>
+                  </li>
+                  <li className="flex items-start gap-3">
+                    <span className="text-green-500 font-bold mt-1">✓</span>
+                    <span><strong>AI automation</strong> that scales creative output</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="mt-12 text-center">
+              <p className="text-2xl md:text-3xl font-light text-zinc-200 italic">
+                The result? Your vision finally gets the <span className="text-brand-orange font-bold not-italic">attention it deserves</span>.
+              </p>
+            </div>
+          </motion.div>
         </div>
       </div>
       <ServicesSection />
 
       {/* Featured Works Masonry Grid */}
-      <section className="py-24 bg-zinc-950">
+      <section className="py-24 bg-zinc-950" id="portfolio">
         <div className="container mx-auto px-6">
           <div className="flex items-end justify-between mb-12 border-b border-zinc-800 pb-6">
             <h2 className="text-4xl md:text-6xl font-display font-bold text-white uppercase tracking-tighter">Featured Works</h2>

@@ -114,8 +114,112 @@ const About: React.FC = () => {
         </div>
       </section>
 
+      {/* Success Stakes - What Success Looks Like */}
+      <section className="py-20 bg-zinc-950 px-6">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl md:text-5xl font-display font-bold text-white mb-6 uppercase">
+                What <span className="text-brand-orange">Success</span> Looks Like
+              </h2>
+              <p className="text-lg text-zinc-400 mb-8">
+                When you partner with Pixcident, you get more than visuals. You get results that transform your business.
+              </p>
+            </div>
+            <div className="space-y-4">
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                className="flex items-start gap-4 p-4 bg-green-500/10 border border-green-500/20 rounded-lg"
+              >
+                <div className="text-green-500 text-2xl font-bold">✓</div>
+                <div>
+                  <h4 className="text-white font-bold mb-1">Your Product Renders Drive Pre-Orders</h4>
+                  <p className="text-zinc-400 text-sm">Sell before you manufacture. Customers see exactly what they get.</p>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="flex items-start gap-4 p-4 bg-green-500/10 border border-green-500/20 rounded-lg"
+              >
+                <div className="text-green-500 text-2xl font-bold">✓</div>
+                <div>
+                  <h4 className="text-white font-bold mb-1">Investors Fund Your Vision</h4>
+                  <p className="text-zinc-400 text-sm">Pitch decks that show, not tell. Close deals faster with tangible visuals.</p>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="flex items-start gap-4 p-4 bg-green-500/10 border border-green-500/20 rounded-lg"
+              >
+                <div className="text-green-500 text-2xl font-bold">✓</div>
+                <div>
+                  <h4 className="text-white font-bold mb-1">Your Website Converts 3x Better</h4>
+                  <p className="text-zinc-400 text-sm">Fast, beautiful sites that turn visitors into paying customers.</p>
+                </div>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="flex items-start gap-4 p-4 bg-green-500/10 border border-green-500/20 rounded-lg"
+              >
+                <div className="text-green-500 text-2xl font-bold">✓</div>
+                <div>
+                  <h4 className="text-white font-bold mb-1">You Scale Without Scaling Headcount</h4>
+                  <p className="text-zinc-400 text-sm">AI automation multiplies your output while you focus on strategy.</p>
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Failure Stakes - Subtle Warning */}
+      <section className="py-20 bg-brand-dark px-6 border-y border-zinc-800">
+        <div className="container mx-auto max-w-5xl text-center">
+          <h3 className="text-2xl md:text-3xl font-display font-bold text-white mb-8">
+            Without Professional Visuals...
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-6 bg-zinc-900/50 border border-zinc-800 rounded-lg">
+              <div className="text-brand-orange text-3xl mb-3">→</div>
+              <p className="text-zinc-400 text-sm">Customers cannot visualize your product</p>
+            </div>
+            <div className="p-6 bg-zinc-900/50 border border-zinc-800 rounded-lg">
+              <div className="text-brand-orange text-3xl mb-3">→</div>
+              <p className="text-zinc-400 text-sm">You lose sales to better-looking competitors</p>
+            </div>
+            <div className="p-6 bg-zinc-900/50 border border-zinc-800 rounded-lg">
+              <div className="text-brand-orange text-3xl mb-3">→</div>
+              <p className="text-zinc-400 text-sm">Your pitch deck falls flat with investors</p>
+            </div>
+            <div className="p-6 bg-zinc-900/50 border border-zinc-800 rounded-lg">
+              <div className="text-brand-orange text-3xl mb-3">→</div>
+              <p className="text-zinc-400 text-sm">Manual work keeps you from scaling</p>
+            </div>
+          </div>
+          <div className="mt-10">
+            <a
+              href="#contact"
+              className="inline-block px-8 py-4 bg-brand-orange text-white font-bold uppercase tracking-wider rounded-sm hover:bg-white hover:text-brand-black transition-all duration-300 shadow-[0_0_30px_rgba(255,85,0,0.3)]"
+            >
+              Let's Fix That
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* Philosophy */}
-      <section className="py-24 bg-brand-dark px-6">
+      <section className="py-24 bg-brand-black px-6">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-3xl font-display font-bold text-white mb-8">OUR PHILOSOPHY</h2>
           <p className="text-2xl text-zinc-400 font-light italic">

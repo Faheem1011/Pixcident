@@ -1,13 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { MessageSquare, X, Send, Bot, Loader2 } from 'lucide-react';
-import { generateAIResponse } from '../services/geminiService';
+import { generateLocalChatResponse } from '../services/localChatbot';
 import { ChatMessage } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const PixcidentChat: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: 'Hello. I am the Pixcident AI. Ask me about our 3D services, Unreal Engine capabilities, or our design philosophy.', timestamp: new Date() }
+    { role: 'model', text: '👋 Hi! I\'m here to help you bring your vision to life. Whether you need stunning 3D renders, a lightning-fast website, or AI-powered automation—I can show you how Pixcident solves your challenges. What are you looking to achieve?', timestamp: new Date() }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -29,7 +29,9 @@ const PixcidentChat: React.FC = () => {
     setMessages(prev => [...prev, { role: 'user', text: userText, timestamp: new Date() }]);
     setIsLoading(true);
 
-    const responseText = await generateAIResponse(userText);
+    // Get conversation history (last 5 messages for context)
+    const history = messages.filter(m => m.role === 'user').slice(-5).map(m => m.text);
+    const responseText = await generateLocalChatResponse(userText, history);
 
     setMessages(prev => [...prev, { role: 'model', text: responseText, timestamp: new Date() }]);
     setIsLoading(false);
@@ -65,7 +67,12 @@ const PixcidentChat: React.FC = () => {
                 <Bot className="text-brand-orange" size={20} />
                 <h3 className="font-display font-bold text-white tracking-wide">PIXCIDENT AI</h3>
               </div>
-              <button onClick={() => setIsOpen(false)} className="text-gray-400 hover:text-white transition-colors">
+              <button
+                onClick={() => setIsOpen(false)}
+                className="text-gray-400 hover:text-white transition-colors"
+                aria-label="Close chat"
+                title="Close chat"
+              >
                 <X size={20} />
               </button>
             </div>
@@ -78,11 +85,10 @@ const PixcidentChat: React.FC = () => {
                   className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                 >
                   <div
-                    className={`max-w-[85%] p-3 rounded-xl text-sm leading-relaxed ${
-                      msg.role === 'user'
-                        ? 'bg-brand-orange text-white rounded-br-none'
-                        : 'bg-brand-gray text-zinc-200 rounded-bl-none border border-zinc-800'
-                    }`}
+                    className={`max-w-[85%] p-3 rounded-xl text-sm leading-relaxed ${msg.role === 'user'
+                      ? 'bg-brand-orange text-white rounded-br-none'
+                      : 'bg-brand-gray text-zinc-200 rounded-bl-none border border-zinc-800'
+                      }`}
                   >
                     {msg.text}
                   </div>
@@ -113,6 +119,8 @@ const PixcidentChat: React.FC = () => {
                 onClick={handleSend}
                 disabled={isLoading || !inputValue.trim()}
                 className="p-3 bg-brand-orange text-white rounded-lg hover:bg-orange-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                aria-label="Send message"
+                title="Send message"
               >
                 <Send size={18} />
               </button>

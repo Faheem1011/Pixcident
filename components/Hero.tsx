@@ -102,16 +102,16 @@ const Hero: React.FC = () => {
         playsInline
         className="absolute inset-0 w-full h-full object-cover opacity-60 z-0"
       >
-        <source src="/assets/backgrounds/hero-video.mp4" type="video/mp4" />
+        <source src="/assets/backgrounds/0119.mp4" type="video/mp4" />
       </video>
 
       {/* Background Overlay */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-zinc-900/50 via-brand-black/80 to-brand-black opacity-90 z-0" />
 
 
+
       {/* 3D Floor Grid */}
-      <div className="absolute bottom-0 left-[-50%] w-[200%] h-[50%] bg-[linear-gradient(to_right,#FF5500_1px,transparent_1px),linear-gradient(to_bottom,#FF5500_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.1] [mask-image:linear-gradient(to_bottom,transparent,black)] origin-bottom z-0"
-        style={{ transform: 'rotateX(60deg) translateZ(0)' }}
+      <div className="absolute bottom-0 left-[-50%] w-[200%] h-[50%] bg-[linear-gradient(to_right,#FF5500_1px,transparent_1px),linear-gradient(to_bottom,#FF5500_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-[0.1] [mask-image:linear-gradient(to_bottom,transparent,black)] origin-bottom z-0 [transform:rotateX(60deg)_translateZ(0)]"
       />
 
       {/* Particles */}
@@ -124,35 +124,53 @@ const Hero: React.FC = () => {
         className="relative z-10 container mx-auto px-6 text-center"
         style={{ x: contentX, y: contentY }}
       >
-        <motion.div style={{ y: y1 }} className="mb-4">
-          <span className="inline-block py-1 px-3 border border-brand-orange/30 rounded-full text-brand-orange text-sm tracking-[0.2em] font-medium mb-6 backdrop-blur-md bg-black/30 shadow-[0_0_15px_rgba(255,85,0,0.3)]">
-            EST. 2025 // CREATIVE PRODUCTION
+        <motion.div style={{ y: y1 }} className="mb-6">
+          <span className="inline-block py-2 px-4 border border-brand-orange/30 rounded-full text-brand-orange text-xs md:text-sm tracking-[0.2em] font-medium backdrop-blur-md bg-black/30 shadow-[0_0_15px_rgba(255,85,0,0.3)]">
+            CREATIVE PRODUCTION STUDIO
           </span>
         </motion.div>
 
         <motion.h1
-          className="font-display font-bold text-7xl md:text-9xl tracking-tighter text-white mb-6 uppercase leading-none"
+          className="font-display font-bold text-5xl md:text-7xl lg:text-8xl tracking-tight text-white mb-6 leading-[1.1]"
           initial={{ opacity: 0, y: 100, scale: 0.9 }}
           animate={{ opacity: 1, y: 0, scale: 1 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         >
-          <div className="flex justify-center gap-0 md:gap-4 flex-wrap">
-            <span>Pix</span>
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-zinc-500">
-              <HackerText text="CIDENT" speed={50} />
-            </span>
-          </div>
+          Your Vision Deserves <br className="hidden md:block" />
+          <span className="text-brand-orange">To Be Seen</span>
         </motion.h1>
 
         <motion.p
           style={{ y: y2 }}
-          className="text-zinc-400 text-lg md:text-2xl max-w-2xl mx-auto font-light leading-relaxed"
+          className="text-zinc-300 text-lg md:text-2xl max-w-3xl mx-auto font-light leading-relaxed mb-10"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 1 }}
         >
-          Intersection of <span className="text-brand-orange font-medium">Design</span>, <span className="text-white font-medium">Animation</span>, and <span className="text-white font-medium">Technology</span>.
+          Stop losing clients to poor visuals. We transform your ideas into <span className="text-white font-medium">photorealistic 3D renders</span>, <span className="text-white font-medium">immersive experiences</span>, and <span className="text-white font-medium">digital products that sell</span>.
         </motion.p>
+
+        {/* CTAs */}
+        <motion.div
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.8, duration: 0.6 }}
+        >
+          <a
+            href="#contact"
+            className="group relative px-8 py-4 bg-brand-orange text-white font-bold text-lg uppercase tracking-wider rounded-sm overflow-hidden transition-all duration-300 hover:bg-white hover:text-brand-black hover:scale-105 shadow-[0_0_30px_rgba(255,85,0,0.3)] hover:shadow-[0_0_40px_rgba(255,85,0,0.5)]"
+          >
+            <span className="relative z-10">Start Your Project</span>
+            <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+          </a>
+          <a
+            href="#portfolio"
+            className="px-8 py-4 border-2 border-white/20 text-white font-bold text-lg uppercase tracking-wider rounded-sm backdrop-blur-md hover:border-brand-orange hover:bg-brand-orange/10 transition-all duration-300"
+          >
+            See Our Work
+          </a>
+        </motion.div>
       </motion.div>
 
       {/* Bottom Glow */}
