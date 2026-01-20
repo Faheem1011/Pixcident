@@ -60,6 +60,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               Home
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-brand-orange group-hover:w-full transition-all duration-300" />
             </Link>
+            <Link to="/portfolio" className="text-sm font-medium text-zinc-300 hover:text-brand-orange uppercase tracking-widest transition-colors relative group">
+              Portfolio
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-brand-orange group-hover:w-full transition-all duration-300" />
+            </Link>
             <Link to="/about" className="text-sm font-medium text-zinc-300 hover:text-brand-orange uppercase tracking-widest transition-colors relative group">
               About
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-brand-orange group-hover:w-full transition-all duration-300" />
@@ -137,6 +141,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           >
             <div className="flex flex-col gap-6 mt-16">
               <Link to="/" className="text-2xl font-display font-bold text-white uppercase">Home</Link>
+              <Link to="/portfolio" className="text-2xl font-display font-bold text-white uppercase">Portfolio</Link>
               <Link to="/about" className="text-2xl font-display font-bold text-white uppercase">About</Link>
 
               <div className="space-y-4">

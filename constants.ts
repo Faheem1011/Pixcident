@@ -2,6 +2,7 @@ import { ServiceItem, PortfolioItem, DonationTier } from './types';
 
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },
+  { label: 'Portfolio', href: '/portfolio' },
   { label: 'About', href: '/about' },
 ];
 
@@ -12,6 +13,7 @@ export const SERVICE_LINKS = [
   { label: 'VFX', href: '/services/motion-vfx' },
   { label: 'AI Solutions', href: '/services/ai-solutions' },
   { label: 'Web Development', href: '/services/web-dev' },
+  { label: 'E-Commerce', href: '/services/ecommerce' },
   { label: 'Vibe Coding', href: '/services/vibe-coding' },
 ];
 
@@ -119,19 +121,36 @@ export const SERVICES: ServiceItem[] = [
     ]
   },
   {
+    id: 'ecommerce',
+    title: 'E-Commerce Solutions',
+    description: 'Your products deserve to shine online. Complete e-commerce experiences from stunning product pages to conversion-optimized A+ content.',
+    longDescription: 'E-commerce success starts with presentation. We create complete e-commerce solutions including photorealistic product designs, conversion-optimized website layouts, engaging product animations, and Amazon A+ content that drives sales. Your products stand out. Your conversion rates increase. From 3D product mockups to animated showcases and optimized listing content, we handle every visual touchpoint of your e-commerce presence. Stop losing sales to poor presentation. Sell more with visuals that convert.',
+    tags: ['Product Design', 'A+ Content', '3D Mockups', 'Product Animation', 'Listing Optimization', 'Conversion Design'],
+    iconName: 'ShoppingCart',
+    route: '/services/ecommerce',
+    projects: [
+      { id: '1', title: 'A+ Content Showcase', type: 'image', src: '/assets/projects/ecommerce/aplus-content-showcase.png', width: 'md:col-span-2 md:row-span-2' },
+      { id: '2', title: '3D Product Mockup', type: 'image', src: '/assets/projects/ecommerce/product-mockup-3d.png' },
+      { id: '3', title: 'Product Page Design', type: 'image', src: '/assets/projects/ecommerce/product-page-design.png' },
+      { id: '4', title: 'Product Animation', type: 'image', src: '/assets/projects/ecommerce/product-animation.png', width: 'md:col-span-2 md:row-span-2' },
+      { id: '5', title: 'Packaging Design', type: 'image', src: '/assets/projects/ecommerce/packaging-design-suite.png' },
+      { id: '6', title: 'Product Catalog', type: 'image', src: '/assets/projects/ecommerce/product-catalog-grid.png' }
+    ]
+  },
+  {
     id: 'vibe-coding',
     title: 'Vibe Coding',
-    description: 'Generic websites do not build brands. Emotion-driven digital art that makes people feel something and remember you forever.',
-    longDescription: 'Your portfolio looks like everyone else. Your brand experience is forgettable. We create experimental digital experiences where code becomes art with parallax storytelling, kinetic typography, glitch aesthetics, and generative visuals that evoke emotion. Your visitors feel something. Your brand becomes unforgettable. Perfect for creative agencies, artists, and brands that refuse to blend in. Stop being generic. Be memorable.',
-    tags: ['Experimental Design', 'Brand Emotion', 'Digital Art', 'Creative Portfolios', 'Kinetic UI', 'Unforgettable'],
+    description: 'Building software shouldn\'t require a dev team. AI-assisted coding and no-code platforms that turn your ideas into working apps fast.',
+    longDescription: 'Traditional development is slow and expensive. We build custom AI-assisted development tools and no-code platforms that empower you to create web apps, software, and digital products without writing code. Your ideas launch faster. Your development costs drop 10x. From drag-and-drop app builders to AI-powered code generation, we democratize software creation. Perfect for entrepreneurs, agencies, and businesses that need to ship products quickly. Stop waiting months for developers. Build and deploy in days.',
+    tags: ['AI-Assisted Coding', 'No-Code Platforms', 'Rapid Development', 'App Builders', 'Code Generation', 'Low-Code Tools'],
     iconName: 'Terminal',
     route: '/services/vibe-coding',
     projects: [
-      { id: '1', title: 'Generative Art', type: 'image', src: '/assets/projects/vibe-coding/generative-art-01.png', width: 'md:col-span-2 md:row-span-2' },
-      { id: '2', title: 'Particle System', type: 'image', src: '/assets/projects/vibe-coding/particle-system.png' },
-      { id: '3', title: 'Creative Waves', type: 'image', src: '/assets/projects/vibe-coding/creative-waves.png' },
-      { id: '4', title: 'Geometry Art', type: 'image', src: '/assets/projects/vibe-coding/geometry-art.png' },
-      { id: '5', title: 'Glitch Art', type: 'image', src: '/assets/projects/vibe-coding/glitch-art.png' }
+      { id: '1', title: 'AI Coding Assistant', type: 'image', src: '/assets/projects/vibe-coding/ai-coding-assistant.png', width: 'md:col-span-2 md:row-span-2' },
+      { id: '2', title: 'No-Code Builder', type: 'image', src: '/assets/projects/vibe-coding/nocode-app-builder.png' },
+      { id: '3', title: 'Code Generation', type: 'image', src: '/assets/projects/vibe-coding/code-generation-viz.png' },
+      { id: '4', title: 'Low-Code Platform', type: 'image', src: '/assets/projects/vibe-coding/lowcode-platform-dashboard.png', width: 'md:col-span-2 md:row-span-2' },
+      { id: '5', title: 'Visual Programming', type: 'image', src: '/assets/projects/vibe-coding/visual-programming-interface.png' }
     ]
   },
 
@@ -239,7 +258,7 @@ export const PORTFOLIO: PortfolioItem[] = [
 export const SYSTEM_PROMPT = `
 You are the AI Assistant for Pixcident, a multidisciplinary creative studio and startup platform founded by Faheem Fiaz.
 Your goal is to answer questions about Pixcident's services, identity, and startup investment opportunities.
-Core Services: 3D Design & Animation, Architectural Visualization, Game Development (Unreal Engine), Motion Graphics & VFX, AI Solutions & Automation, Web Development, Vibe Coding.
+Core Services: 3D Design & Animation, Architectural Visualization, Game Development (Unreal Engine), Motion Graphics & VFX, AI Solutions & Automation, Web Development, E-Commerce Solutions, Vibe Coding (AI-Assisted Development & No-Code Platforms).
 Startup Info: Pixcident is raising funds to build a next-gen creative asset platform "Pixcident Core".
 Tone: Professional, futuristic, creative, and concise.
 Theme: Orange, White, Black.

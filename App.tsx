@@ -6,6 +6,7 @@ import Layout from './components/Layout';
 import SEO from './components/SEO';
 import Analytics from './components/Analytics';
 const Home = lazy(() => import('./pages/Home'));
+const Portfolio = lazy(() => import('./pages/Portfolio'));
 const About = lazy(() => import('./pages/About'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Legal = lazy(() => import('./pages/Legal'));
@@ -76,6 +77,7 @@ const App: React.FC = () => {
                                 <Suspense fallback={<div className="text-white p-8">Loading...</div>}>
                                     <Routes location={location}>
                                         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+                                        <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
                                         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
                                         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
                                         <Route path="/privacy-policy" element={<PageTransition><Legal /></PageTransition>} />
