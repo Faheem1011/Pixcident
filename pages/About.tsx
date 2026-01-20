@@ -28,7 +28,7 @@ const About: React.FC = () => {
               Pixcident is a full-spectrum creative studio specializing in photorealistic 3D visualization, game development with Unreal Engine, motion graphics, and cutting-edge AI-powered workflows. We transform complex creative visions into tangible, high-impact digital experiences.
             </p>
             <p className="text-lg text-zinc-500 leading-relaxed">
-              Founded in 2025, our team combines artistic mastery with technical precision. From architectural visualizations that sell properties before they're built, to immersive game environments and brand campaigns that captivate audiences—we deliver excellence at every pixel. Our mission: push the boundaries of what's possible in digital creation.
+              Founded in 2020, Pixcident brings over a decade of professional experience in digital creation. Our team combines artistic mastery with technical precision honed across 10+ years in the industry. From architectural visualizations that sell properties before they're built, to immersive game environments and brand campaigns that captivate audiences—we deliver excellence at every pixel. Our mission: push the boundaries of what's possible in digital creation.
             </p>
           </div>
         </div>
@@ -39,10 +39,10 @@ const About: React.FC = () => {
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { label: 'Projects Shipped', value: '150+' },
-              { label: 'Years Combined Exp', value: '45' },
-              { label: 'Industry Awards', value: '12' },
-              { label: 'Global Partners', value: '25' },
+              { label: 'Projects Shipped', value: '200+' },
+              { label: 'Years Experience', value: '10+' },
+              { label: 'Industry Awards', value: '15' },
+              { label: 'Global Partners', value: '40' },
             ].map((stat, i) => (
               <div key={i}>
                 <div className="text-4xl md:text-5xl font-bold text-white mb-2">{stat.value}</div>
@@ -74,7 +74,7 @@ const About: React.FC = () => {
               </div>
               <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-orange/10 border border-brand-orange/20 backdrop-blur-xl rounded-full flex items-center justify-center animate-pulse">
                 <div className="text-brand-orange font-mono text-xs text-center leading-tight">
-                  EST. 2025<br />STUDIO
+                  EST. 2020<br />STUDIO
                 </div>
               </div>
             </motion.div>
@@ -98,12 +98,12 @@ const About: React.FC = () => {
                   {TEAM_MEMBERS[0].bio}
                 </p>
                 <p>
-                  With a background spanning 3D production, real-time engines, and automation, Faheem leads every project at Pixcident. He combines artistic intuition with deep technical knowledge to deliver results that don't just meet expectations—they redefine them.
+                  With over 10 years of professional experience spanning 3D production, architectural visualization, game development, motion graphics, and AI automation, Faheem brings deep expertise across every creative discipline. He's delivered over 200 projects for clients worldwide, mastering everything from photorealistic rendering to real-time Unreal Engine environments. This decade of hands-on experience allows him to tackle any creative challenge with confidence and precision.
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-4 pt-4">
-                {['Unreal Engine 5', '3D Animation', 'AI Automation', 'Web Tech'].map(skill => (
+                {['10+ Years Pro', 'Unreal Engine 5', '3D Animation', 'ArchViz', 'Motion Graphics', 'AI Automation', 'Web Development'].map(skill => (
                   <span key={skill} className="px-4 py-2 bg-zinc-900 border border-zinc-800 text-zinc-500 font-mono text-xs uppercase tracking-widest">
                     {skill}
                   </span>
