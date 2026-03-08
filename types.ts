@@ -47,3 +47,14 @@ export enum PixcidentSection {
   Work = 'work',
   Contact = 'contact'
 }
+
+export interface SoftwareProduct {
+  id: string;
+  title: string;
+  description: string;
+  features: string[];
+  price: number;
+  paymentLink: string;
+  image: string;
+  category: string;
+}

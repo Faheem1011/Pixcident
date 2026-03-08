@@ -260,6 +260,29 @@ export const PORTFOLIO: PortfolioItem[] = [
   },
 ];
 
+export const SOFTWARE_PRODUCTS: import('./types').SoftwareProduct[] = [
+  {
+    id: 'ninja-bypass',
+    title: 'Ninja Engine Bypass',
+    description: 'Premium version of the Ninja Engine with the login system removed and optimized for faster performance.',
+    features: ['No Login Required', 'Enhanced Performance', 'Ad-Free Interface', 'Lifetime Access'],
+    price: 19.99,
+    paymentLink: '#', // Replace with Actual Gumroad/Stripe Link
+    image: getAssetUrl('/assets/products/operations-ai.png'), // Placeholder
+    category: 'Game Modifications'
+  },
+  {
+    id: 'web-scraper-pro',
+    title: 'Ultimate Web Scraper Pro',
+    description: 'Fully unlocked Ultimate Web Scraper Chrome Extension with no subscription required.',
+    features: ['All Premium Features', 'No License Checks', 'Unlimited Scrapes', 'Export to CSV/JSON'],
+    price: 29.99,
+    paymentLink: '#', // Replace with Actual Gumroad/Stripe Link
+    image: getAssetUrl('/assets/products/demand-scanner.png'), // Placeholder
+    category: 'Browser Extensions'
+  }
+];
+
 export const SYSTEM_PROMPT = `
 You are the AI Assistant for Pixcident, a multidisciplinary creative studio and startup platform founded by Faheem Fiaz.
 Your goal is to answer questions about Pixcident's services, identity, and startup investment opportunities.

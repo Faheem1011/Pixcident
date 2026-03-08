@@ -21,6 +21,7 @@ const TechStack = lazy(() => import('./pages/TechStack'));
 const StartupLanding = lazy(() => import('./pages/Startup/StartupLanding'));
 const Donate = lazy(() => import('./pages/Startup/Donate'));
 const Invest = lazy(() => import('./pages/Startup/Invest'));
+const Arsenal = lazy(() => import('./pages/Arsenal'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 import PixcidentChat from './components/PixcidentChat';
 import CustomCursor from './components/CustomCursor';
@@ -100,6 +101,7 @@ const App: React.FC = () => {
                                         <Route path="/startup" element={<PageTransition><StartupLanding /></PageTransition>} />
                                         <Route path="/startup/donate" element={<PageTransition><Donate /></PageTransition>} />
                                         <Route path="/startup/invest" element={<PageTransition><Invest /></PageTransition>} />
+                                        <Route path="/tools" element={<PageTransition><Arsenal /></PageTransition>} />
                                         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
                                     </Routes>
                                 </Suspense>

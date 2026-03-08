@@ -72,6 +72,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               Process
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-brand-orange group-hover:w-full transition-all duration-300" />
             </Link>
+            <Link to="/tools" className="text-sm font-medium text-brand-orange hover:text-white uppercase tracking-widest transition-colors relative group flex items-center gap-1">
+              Arsenal
+              <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-brand-orange/50 group-hover:bg-white transition-all duration-300" />
+            </Link>
 
             {/* Services Dropdown */}
             <div className="relative group h-full py-2" onMouseEnter={() => setHoveredLink('services')} onMouseLeave={() => setHoveredLink(null)}>
@@ -148,6 +152,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <Link to="/portfolio" className="text-2xl font-display font-bold text-white uppercase">Portfolio</Link>
               <Link to="/about" className="text-2xl font-display font-bold text-white uppercase">About</Link>
               <Link to="/how-we-work" className="text-2xl font-display font-bold text-white uppercase">Process</Link>
+              <Link to="/tools" className="text-2xl font-display font-bold text-brand-orange uppercase">Arsenal</Link>
 
               <div className="space-y-4">
                 <p className="text-brand-orange font-bold uppercase text-sm tracking-widest">Services</p>
@@ -245,6 +250,12 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <Link to="/tech-stack" className="hover:text-brand-orange transition-colors flex items-center gap-2 group">
                     <span className="w-1 h-1 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
                     Tech Stack
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/tools" className="hover:text-brand-orange transition-colors flex items-center gap-2 group text-brand-orange font-bold">
+                    <span className="w-1 h-1 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    Cyber Arsenal
                   </Link>
                 </li>
               </ul>
