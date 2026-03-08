@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, X, Play, ChevronLeft, ChevronRight, Filter } from 'lucide-react';
 import { ALL_PORTFOLIO_ASSETS, CATEGORIES, PortfolioAsset } from '../portfolioAssets';
-import SEO from '../components/SEO';
+import EnhancedSEO, { StructuredData } from '../components/EnhancedSEO';
 
 // Lazy Loading Image Component
 const LazyImage: React.FC<{
@@ -135,10 +135,19 @@ const Portfolio: React.FC = () => {
 
     return (
         <>
-            <SEO
-                title="Portfolio - Pixcident Creative Studio"
-                description="Explore our complete portfolio of 3D animation, architectural visualization, game development, VFX, AI solutions, web development, and e-commerce projects."
-                keywords="portfolio, 3D animation, archviz, game development, VFX, AI solutions, web development, e-commerce design"
+            <EnhancedSEO
+                title="Portfolio - Creative Showcase"
+                description="Explore our complete portfolio of 3D animation, architectural visualization, game development, VFX, AI solutions, and premium web development projects."
+                keywords={['portfolio', '3D animation', 'archviz', 'game development', 'VFX', 'AI solutions', 'web development']}
+            />
+
+            <StructuredData
+                type="CreativeWork"
+                data={{
+                    name: "Pixcident Portfolio",
+                    description: "Showcase of 3D visualization and creative technology projects",
+                    author: { "@type": "Organization", "name": "Pixcident" }
+                }}
             />
 
             <div className="min-h-screen bg-brand-black pt-32 pb-20">

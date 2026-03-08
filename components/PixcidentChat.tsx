@@ -45,6 +45,8 @@ const PixcidentChat: React.FC = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(true)}
+        aria-label="Ask Pixcident AI Assistant"
+        title="Ask Pixcident AI Assistant"
       >
         <Bot size={28} className="group-hover:animate-pulse" />
         <span className="absolute right-full mr-4 bg-white text-black px-2 py-1 text-xs font-bold rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">

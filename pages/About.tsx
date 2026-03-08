@@ -1,5 +1,5 @@
 import React from 'react';
-import SEO from '../components/SEO';
+import EnhancedSEO, { StructuredData, PIXCIDENT_ORGANIZATION_SCHEMA } from '../components/EnhancedSEO';
 import { motion } from 'framer-motion';
 import { TEAM_MEMBERS } from '../constants';
 import ContactSection from '../components/ContactSection';
@@ -7,9 +7,15 @@ import ContactSection from '../components/ContactSection';
 const About: React.FC = () => {
   return (
     <div className="bg-brand-black min-h-screen">
-      <SEO
+      <EnhancedSEO
         title="About Us"
-        description="Pixcident is a full-spectrum creative studio delivering photorealistic 3D visualization, Unreal Engine game development, architectural renders, motion graphics, and AI-powered creative workflows. Excellence in every pixel."
+        description="Pixcident is a full-spectrum creative studio delivering photorealistic 3D visualization, Unreal Engine game development, and AI-powered creative workflows. Founded in 2020 by Faheem Fiaz."
+        keywords={['about pixcident', 'creative studio team', 'faheem fiaz', '3D visualization experts', 'Unreal Engine studio']}
+      />
+
+      <StructuredData
+        type="Organization"
+        data={PIXCIDENT_ORGANIZATION_SCHEMA}
       />
 
       {/* Hero */}

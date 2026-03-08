@@ -4,6 +4,10 @@ import { getAssetUrl } from './cdn-utils';
 export const NAV_LINKS = [
   { label: 'Home', href: '/' },
   { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Case Studies', href: '/case-studies' },
+  { label: 'Pricing', href: '/pricing' },
+  { label: 'Insights', href: '/blog' },
+  { label: 'Resources', href: '/resources' },
   { label: 'About', href: '/about' },
 ];
 

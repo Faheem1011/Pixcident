@@ -29,7 +29,9 @@ const Analytics = () => {
                 window.dataLayer.push(args);
             }
             gtag('js', new Date());
-            gtag('config', GA_MEASUREMENT_ID);
+            gtag('config', GA_MEASUREMENT_ID, {
+                send_page_view: false // We handle it manually on route change
+            });
             window.gtag = gtag;
         }
 
@@ -64,6 +66,11 @@ const Analytics = () => {
             window.gtag('config', GA_MEASUREMENT_ID, {
                 page_path: location.pathname + location.search,
             });
+            window.gtag('event', 'page_view', {
+                page_path: location.pathname + location.search,
+                page_title: document.title,
+                page_location: window.location.href
+            });
         }
 
         if (FB_PIXEL_ID && window.fbq) {
@@ -72,6 +79,18 @@ const Analytics = () => {
     }, [location]);
 
     return null;
+};
+
+/**
+ * Global helper for manual event tracking
+ */
+export const trackEvent = (eventName: string, params: Record<string, any> = {}) => {
+    if (window.gtag && GA_MEASUREMENT_ID) {
+        window.gtag('event', eventName, params);
+    }
+    if (window.fbq && FB_PIXEL_ID) {
+        window.fbq('trackCustom', eventName, params);
+    }
 };
 
 export default Analytics;

@@ -31,7 +31,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       <a href="#main" className="sr-only focus:not-sr-only fixed top-2 left-2 bg-black text-white px-3 py-2 z-50">Skip to content</a>
 
       <nav
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${isScrolled ? 'bg-brand-black/90 backdrop-blur-lg border-b border-zinc-800 py-4' : 'bg-transparent py-6'
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 ${isScrolled ? 'bg-brand-black/40 backdrop-blur-xl border-b border-white/5 py-4 shadow-[0_4px_30px_rgba(0,0,0,0.1)]' : 'bg-transparent py-6'
           }`}
       >
         <div className="container mx-auto px-6 flex justify-between items-center">
@@ -68,6 +68,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               About
               <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-brand-orange group-hover:w-full transition-all duration-300" />
             </Link>
+            <Link to="/how-we-work" className="text-sm font-medium text-zinc-300 hover:text-brand-orange uppercase tracking-widest transition-colors relative group">
+              Process
+              <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-brand-orange group-hover:w-full transition-all duration-300" />
+            </Link>
 
             {/* Services Dropdown */}
             <div className="relative group h-full py-2" onMouseEnter={() => setHoveredLink('services')} onMouseLeave={() => setHoveredLink(null)}>
@@ -79,8 +83,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 Services <ChevronDown size={14} />
               </button>
               <div className="absolute top-full left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
-                <div className="bg-brand-dark/95 backdrop-blur-md border border-zinc-800 p-4 rounded-sm shadow-2xl w-64 flex flex-col gap-2 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-1 h-full bg-brand-orange" />
+                <div className="bg-brand-black/60 backdrop-blur-xl border border-white/10 p-4 rounded-lg shadow-[0_8px_32px_0_rgba(255,85,0,0.1)] w-64 flex flex-col gap-2 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand-orange shadow-[0_0_15px_rgba(255,85,0,0.5)]" />
                   {SERVICE_LINKS.map(link => (
                     <Link key={link.href} to={link.href} className="text-zinc-400 hover:text-white hover:translate-x-2 transition-all duration-300 px-3 py-2 text-sm block border-b border-zinc-900 last:border-none">
                       {link.label}
@@ -100,8 +104,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 Startup <ChevronDown size={14} />
               </button>
               <div className="absolute top-full left-0 pt-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform group-hover:translate-y-0 translate-y-2">
-                <div className="bg-brand-dark/95 backdrop-blur-md border border-blue-900/30 p-4 rounded-sm shadow-2xl w-48 flex flex-col gap-2 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-1 h-full bg-brand-blue" />
+                <div className="bg-brand-black/60 backdrop-blur-xl border border-white/10 p-4 rounded-lg shadow-[0_8px_32px_0_rgba(37,99,235,0.1)] w-48 flex flex-col gap-2 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-brand-blue shadow-[0_0_15px_rgba(37,99,235,0.5)]" />
                   {STARTUP_LINKS.map(link => (
                     <Link key={link.href} to={link.href} className="text-zinc-400 hover:text-brand-blue hover:translate-x-2 transition-all duration-300 px-3 py-2 text-sm block border-b border-zinc-900 last:border-none">
                       {link.label}
@@ -143,6 +147,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               <Link to="/" className="text-2xl font-display font-bold text-white uppercase">Home</Link>
               <Link to="/portfolio" className="text-2xl font-display font-bold text-white uppercase">Portfolio</Link>
               <Link to="/about" className="text-2xl font-display font-bold text-white uppercase">About</Link>
+              <Link to="/how-we-work" className="text-2xl font-display font-bold text-white uppercase">Process</Link>
 
               <div className="space-y-4">
                 <p className="text-brand-orange font-bold uppercase text-sm tracking-widest">Services</p>
@@ -190,18 +195,58 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </p>
             </div>
 
-            {/* Column 2: Services */}
+            {/* Column 2: Explore */}
             <div>
-              <h3 className="font-display font-bold text-xl mb-6">Services</h3>
+              <h3 className="font-display font-bold text-xl mb-6">Explore</h3>
               <ul className="space-y-4 text-zinc-400 text-sm">
-                {SERVICE_LINKS.map((item) => (
-                  <li key={item.href}>
-                    <Link to={item.href} className="hover:text-brand-orange transition-colors flex items-center gap-2 group">
-                      <span className="w-1 h-1 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
-                      {item.label}
-                    </Link>
-                  </li>
-                ))}
+                <li>
+                  <Link to="/portfolio" className="hover:text-brand-orange transition-colors flex items-center gap-2 group">
+                    <span className="w-1 h-1 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    Portfolio
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/case-studies" className="hover:text-brand-orange transition-colors flex items-center gap-2 group">
+                    <span className="w-1 h-1 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    Case Studies
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/pricing" className="hover:text-brand-orange transition-colors flex items-center gap-2 group">
+                    <span className="w-1 h-1 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    Pricing
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/blog" className="hover:text-brand-orange transition-colors flex items-center gap-2 group">
+                    <span className="w-1 h-1 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    Insights
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/faq" className="hover:text-brand-orange transition-colors flex items-center gap-2 group">
+                    <span className="w-1 h-1 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    FAQ
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/resources" className="hover:text-brand-orange transition-colors flex items-center gap-2 group">
+                    <span className="w-1 h-1 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    Resources
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/how-we-work" className="hover:text-brand-orange transition-colors flex items-center gap-2 group">
+                    <span className="w-1 h-1 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    Process
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/tech-stack" className="hover:text-brand-orange transition-colors flex items-center gap-2 group">
+                    <span className="w-1 h-1 bg-brand-orange rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                    Tech Stack
+                  </Link>
+                </li>
               </ul>
             </div>
 

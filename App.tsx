@@ -8,9 +8,16 @@ import Analytics from './components/Analytics';
 const Home = lazy(() => import('./pages/Home'));
 const Portfolio = lazy(() => import('./pages/Portfolio'));
 const About = lazy(() => import('./pages/About'));
+const Blog = lazy(() => import('./pages/Blog'));
 const Contact = lazy(() => import('./pages/Contact'));
 const Legal = lazy(() => import('./pages/Legal'));
 const ServiceDetail = lazy(() => import('./pages/ServiceDetail'));
+const CaseStudies = lazy(() => import('./pages/CaseStudies'));
+const FAQ = lazy(() => import('./pages/FAQ'));
+const HowWeWork = lazy(() => import('./pages/HowWeWork'));
+const Pricing = lazy(() => import('./pages/Pricing'));
+const Resources = lazy(() => import('./pages/Resources'));
+const TechStack = lazy(() => import('./pages/TechStack'));
 const StartupLanding = lazy(() => import('./pages/Startup/StartupLanding'));
 const Donate = lazy(() => import('./pages/Startup/Donate'));
 const Invest = lazy(() => import('./pages/Startup/Invest'));
@@ -79,7 +86,14 @@ const App: React.FC = () => {
                                         <Route path="/" element={<PageTransition><Home /></PageTransition>} />
                                         <Route path="/portfolio" element={<PageTransition><Portfolio /></PageTransition>} />
                                         <Route path="/about" element={<PageTransition><About /></PageTransition>} />
+                                        <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
                                         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+                                        <Route path="/case-studies" element={<PageTransition><CaseStudies /></PageTransition>} />
+                                        <Route path="/faq" element={<PageTransition><FAQ /></PageTransition>} />
+                                        <Route path="/how-we-work" element={<PageTransition><HowWeWork /></PageTransition>} />
+                                        <Route path="/pricing" element={<PageTransition><Pricing /></PageTransition>} />
+                                        <Route path="/resources" element={<PageTransition><Resources /></PageTransition>} />
+                                        <Route path="/tech-stack" element={<PageTransition><TechStack /></PageTransition>} />
                                         <Route path="/privacy-policy" element={<PageTransition><Legal /></PageTransition>} />
                                         <Route path="/terms-of-service" element={<PageTransition><Legal /></PageTransition>} />
                                         <Route path="/services/:id" element={<PageTransition><ServiceDetail /></PageTransition>} />

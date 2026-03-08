@@ -21,8 +21,17 @@ export const getAssetUrl = (path: string): string => {
         return path;
     }
 
+    // Determine if we are running locally
+    const isLocal = typeof window !== 'undefined' &&
+        (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1');
+
     // Clean up the path (remove leading slash if present)
     const cleanPath = path.startsWith('/') ? path.slice(1) : path;
+
+    // Use local path for development to ensure images load even before git push
+    if (isLocal) {
+        return `/${cleanPath}`;
+    }
 
     // Prefix with 'public/' because the assets are in the public folder but referenced relative to it in development
     // In production, Vite serves files from 'public' at the root level.

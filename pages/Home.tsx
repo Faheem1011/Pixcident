@@ -25,51 +25,67 @@ const Home: React.FC = () => {
               But Without Stunning Visuals, They Stay Invisible.
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left mt-12">
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-brand-orange uppercase tracking-wide">The Problem</h3>
-                <ul className="text-zinc-300 text-lg leading-relaxed space-y-3">
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-orange mt-1">→</span>
-                    <span>Customers can't visualize products that don't exist yet</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-orange mt-1">→</span>
-                    <span>Investors need to <em>see</em> your vision to fund it</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-orange mt-1">→</span>
-                    <span>Generic websites blend in with competitors</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-brand-orange mt-1">→</span>
-                    <span>Manual creative work prevents you from scaling</span>
-                  </li>
+              <motion.div
+                className="space-y-4 p-8 bg-zinc-900/40 backdrop-blur-md border border-white/5 rounded-2xl"
+                whileHover={{ y: -5, borderColor: "rgba(255, 85, 0, 0.3)" }}
+              >
+                <h3 className="text-xl font-bold text-brand-orange uppercase tracking-wide flex items-center gap-2">
+                  <span className="w-8 h-px bg-brand-orange"></span>
+                  The Problem
+                </h3>
+                <ul className="text-zinc-300 text-lg leading-relaxed space-y-4">
+                  {[
+                    "Customers can't visualize products that don't exist yet",
+                    "Investors need to see your vision to fund it",
+                    "Generic websites blend in with competitors",
+                    "Manual creative work prevents you from scaling"
+                  ].map((item, i) => (
+                    <motion.li
+                      key={i}
+                      className="flex items-start gap-3"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.2 + i * 0.1 }}
+                    >
+                      <span className="text-brand-orange mt-1">→</span>
+                      <span>{item}</span>
+                    </motion.li>
+                  ))}
                 </ul>
-              </div>
-              <div className="space-y-4">
-                <h3 className="text-xl font-bold text-white uppercase tracking-wide">The Solution</h3>
-                <p className="text-zinc-300 text-lg leading-relaxed mb-6">
-                  We help businesses like yours turn concepts into reality with:
+              </motion.div>
+              <motion.div
+                className="space-y-4 p-8 bg-brand-orange/5 backdrop-blur-md border border-brand-orange/20 rounded-2xl"
+                whileHover={{ y: -5, borderColor: "rgba(255, 85, 0, 0.5)" }}
+              >
+                <h3 className="text-xl font-bold text-white uppercase tracking-wide flex items-center gap-2">
+                  <span className="w-8 h-px bg-white"></span>
+                  The Solution
+                </h3>
+                <p className="text-zinc-300 text-lg leading-relaxed mb-4">
+                  We bridge the gap between imagination and reality:
                 </p>
-                <ul className="text-white text-lg leading-relaxed space-y-3">
-                  <li className="flex items-start gap-3">
-                    <span className="text-green-500 font-bold mt-1">✓</span>
-                    <span><strong>3D renders</strong> that sell products before they're manufactured</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-green-500 font-bold mt-1">✓</span>
-                    <span><strong>Game environments</strong> that immerse and engage</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-green-500 font-bold mt-1">✓</span>
-                    <span><strong>Web experiences</strong> that convert visitors into customers</span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-green-500 font-bold mt-1">✓</span>
-                    <span><strong>AI automation</strong> that scales creative output</span>
-                  </li>
+                <ul className="text-white text-lg leading-relaxed space-y-4">
+                  {[
+                    { text: "3D renders", desc: "sell before you manufacture" },
+                    { text: "Game environments", desc: "immerse and engage" },
+                    { text: "Web experiences", desc: "convert visitors to fans" },
+                    { text: "AI automation", desc: "scale your creative output" }
+                  ].map((item, i) => (
+                    <motion.li
+                      key={i}
+                      className="flex items-start gap-3"
+                      initial={{ opacity: 0, x: 20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: 0.4 + i * 0.1 }}
+                    >
+                      <span className="text-green-500 font-bold mt-1">✓</span>
+                      <span><strong>{item.text}</strong> that {item.desc}</span>
+                    </motion.li>
+                  ))}
                 </ul>
-              </div>
+              </motion.div>
             </div>
             <div className="mt-12 text-center">
               <p className="text-2xl md:text-3xl font-light text-zinc-200 italic">
