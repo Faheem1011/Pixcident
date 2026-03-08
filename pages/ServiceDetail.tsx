@@ -5,7 +5,6 @@ import { SERVICES } from '../constants';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowLeft, CheckCircle2, ArrowRight } from 'lucide-react';
 import ContactSection from '../components/ContactSection';
-import ModelShowcase from '../components/Game/ModelShowcase';
 
 const ServiceDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -138,38 +137,6 @@ const ServiceDetail: React.FC = () => {
         </div>
       </section>
 
-      {/* Interactive Showcase - Only for 3D/VFX/Game IDs */}
-      {(service.id === '3d-anim' || service.id === 'arch-viz' || service.id === 'game-dev') && (
-        <section className="py-24 bg-brand-black px-6">
-          <div className="container mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-              <div>
-                <h2 className="text-4xl md:text-6xl font-display font-bold text-white mb-8 uppercase leading-none">
-                  Interactive <br /><span className="text-brand-orange">Visual Proof</span>
-                </h2>
-                <p className="text-xl text-zinc-400 leading-relaxed mb-8">
-                  Experience the precision of our 3D engine in real-time. We don't just export images—we build interactive assets that can be leveraged across web, marketing, and runtime environments.
-                </p>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 text-white font-mono text-sm">
-                    <span className="w-12 h-px bg-brand-orange" />
-                    <span>REAL-TIME LIGHTING</span>
-                  </div>
-                  <div className="flex items-center gap-4 text-white font-mono text-sm">
-                    <span className="w-12 h-px bg-zinc-700" />
-                    <span>PBR MATERIALS</span>
-                  </div>
-                  <div className="flex items-center gap-4 text-white font-mono text-sm">
-                    <span className="w-12 h-px bg-zinc-700" />
-                    <span>RESPONSIBLE TOPOLOGY</span>
-                  </div>
-                </div>
-              </div>
-              <ModelShowcase />
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* Interactive Process Section */}
       <section className="py-24 bg-brand-black overflow-hidden relative">
