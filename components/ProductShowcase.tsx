@@ -43,11 +43,15 @@ const ProductShowcase: React.FC<ProductShowcaseProps> = ({ products }) => {
                         {/* Product Illustration */}
                         {!isExpanded && (
                             <div className="mb-4 rounded-lg overflow-hidden bg-gradient-to-br from-zinc-900 to-zinc-950 p-4">
-                                <img
-                                    src={`/assets/products/${product.id}.png`}
-                                    alt={product.name}
-                                    className="w-full h-32 object-contain"
-                                />
+                                <picture>
+                                    <img
+                                        src={`/assets/products/${product.id}.png`}
+                                        alt={product.name}
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="w-full h-32 object-contain"
+                                    />
+                                </picture>
                             </div>
                         )}
 

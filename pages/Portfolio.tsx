@@ -4,18 +4,21 @@ import { Search, X, Play, ChevronLeft, ChevronRight, Filter } from 'lucide-react
 import { ALL_PORTFOLIO_ASSETS, CATEGORIES, PortfolioAsset } from '../portfolioAssets';
 import EnhancedSEO, { StructuredData } from '../components/EnhancedSEO';
 
-// Lazy Loading Image Component
+// Lazy Loading Image Component with Responsive Support
 const LazyImage: React.FC<{
     src: string;
     alt: string;
     className?: string;
     onClick?: () => void;
-}> = ({ src, alt, className, onClick }) => {
+    priority?: boolean;
+}> = ({ src, alt, className, onClick, priority = false }) => {
     const [isLoaded, setIsLoaded] = useState(false);
-    const [isInView, setIsInView] = useState(false);
+    const [isInView, setIsInView] = useState(priority);
     const imgRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
+        if (priority) return;
+        
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -23,29 +26,30 @@ const LazyImage: React.FC<{
                     observer.disconnect();
                 }
             },
-            { rootMargin: '200px' } // Preload 200px before viewport
+            { rootMargin: '300px' } // Preload 300px before viewport
         );
 
         if (imgRef.current) observer.observe(imgRef.current);
         return () => observer.disconnect();
-    }, []);
+    }, [priority]);
 
     return (
         <div ref={imgRef} className={`relative ${className}`} onClick={onClick}>
             {/* Blur placeholder */}
             {!isLoaded && (
-                <div className="absolute inset-0 bg-zinc-900 animate-pulse" />
+                <div className="absolute inset-0 bg-zinc-800 animate-pulse" />
             )}
             {isInView && (
-                <img
-                    src={src}
-                    alt={alt}
-                    loading="lazy"
-                    decoding="async"
-                    onLoad={() => setIsLoaded(true)}
-                    className={`w-full h-full object-cover transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'
-                        }`}
-                />
+                <picture>
+                    <img
+                        src={src}
+                        alt={alt}
+                        loading={priority ? "eager" : "lazy"}
+                        decoding="async"
+                        onLoad={() => setIsLoaded(true)}
+                        className={`w-full h-full object-cover transition-opacity duration-700 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+                    />
+                </picture>
             )}
         </div>
     );
@@ -81,6 +85,8 @@ const LazyVideo: React.FC<{
                     autoPlay
                     muted
                     loop
+                    playsInline
+                    preload="metadata"
                     className="w-full h-full object-cover"
                 />
             )}
@@ -294,101 +300,162 @@ const Portfolio: React.FC = () => {
             {/* Lightbox Modal */}
             <AnimatePresence>
                 {selectedAsset && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="fixed inset-0 z-[70] flex items-center justify-center px-4 bg-black/95 backdrop-blur-md"
-                        onClick={() => setSelectedAsset(null)}
-                    >
-                        {/* Close Button */}
-                        <button
-                            className="absolute top-4 right-4 z-10 p-3 bg-black/50 rounded-full text-white hover:bg-brand-orange transition-colors"
-                            onClick={() => setSelectedAsset(null)}
-                            aria-label="Close"
-                        >
-                            <X size={24} />
-                        </button>
-
-                        {/* Navigation Arrows */}
-                        {currentIndex > 0 && (
-                            <button
-                                className="absolute left-4 z-10 p-3 bg-black/50 rounded-full text-white hover:bg-brand-orange transition-colors"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handlePrevious();
-                                }}
-                                aria-label="Previous"
-                            >
-                                <ChevronLeft size={24} />
-                            </button>
-                        )}
-                        {currentIndex < filteredAssets.length - 1 && (
-                            <button
-                                className="absolute right-4 z-10 p-3 bg-black/50 rounded-full text-white hover:bg-brand-orange transition-colors"
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleNext();
-                                }}
-                                aria-label="Next"
-                            >
-                                <ChevronRight size={24} />
-                            </button>
-                        )}
-
-                        {/* Content */}
-                        <motion.div
-                            initial={{ scale: 0.9 }}
-                            animate={{ scale: 1 }}
-                            exit={{ scale: 0.9 }}
-                            className="max-w-6xl w-full max-h-[90vh] flex flex-col md:flex-row bg-zinc-900 rounded-xl overflow-hidden"
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            {/* Media Side */}
-                            <div className="w-full md:w-2/3 bg-black flex items-center justify-center p-8">
-                                {selectedAsset.type === 'image' ? (
-                                    <img
-                                        src={selectedAsset.src}
-                                        alt={selectedAsset.title}
-                                        className="max-w-full max-h-full object-contain"
-                                    />
-                                ) : (
-                                    <video
-                                        src={selectedAsset.src}
-                                        controls
-                                        autoPlay
-                                        muted
-                                        loop
-                                        className="max-w-full max-h-full"
-                                    />
-                                )}
-                            </div>
-
-                            {/* Info Side */}
-                            <div className="w-full md:w-1/3 p-8 overflow-y-auto">
-                                <span className="text-brand-orange text-xs font-bold uppercase tracking-widest">
-                                    {selectedAsset.category}
-                                </span>
-                                <h2 className="text-3xl font-display font-bold text-white my-4 uppercase">
-                                    {selectedAsset.title}
-                                </h2>
-                                {selectedAsset.description && (
-                                    <p className="text-zinc-400 leading-relaxed mb-6">
-                                        {selectedAsset.description}
-                                    </p>
-                                )}
-                                <div className="flex items-center gap-4 text-sm text-zinc-500">
-                                    <span>
-                                        {currentIndex + 1} / {filteredAssets.length}
-                                    </span>
-                                    <span className="uppercase">{selectedAsset.type}</span>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </motion.div>
+                    <PortfolioLightbox
+                        asset={selectedAsset}
+                        onClose={() => setSelectedAsset(null)}
+                        onPrevious={handlePrevious}
+                        onNext={handleNext}
+                        hasPrevious={currentIndex > 0}
+                        hasNext={currentIndex < filteredAssets.length - 1}
+                        currentIndex={currentIndex + 1}
+                        totalCount={filteredAssets.length}
+                    />
                 )}
             </AnimatePresence>
         </>
+    );
+};
+
+// Portfolio Lightbox Component for better organization and accessibility
+const PortfolioLightbox: React.FC<{
+    asset: PortfolioAsset;
+    onClose: () => void;
+    onPrevious: () => void;
+    onNext: () => void;
+    hasPrevious: boolean;
+    hasNext: boolean;
+    currentIndex: number;
+    totalCount: number;
+}> = ({ asset, onClose, onPrevious, onNext, hasPrevious, hasNext, currentIndex, totalCount }) => {
+    const lightboxRef = useRef<HTMLDivElement>(null);
+    const lastFocusedElement = useRef<HTMLElement | null>(null);
+
+    // Focus trap and accessibility
+    useEffect(() => {
+        lastFocusedElement.current = document.activeElement as HTMLElement;
+        
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'Escape') {
+                onClose();
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+        document.body.style.overflow = 'hidden';
+        
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+            document.body.style.overflow = '';
+            lastFocusedElement.current?.focus();
+        };
+    }, [onClose]);
+
+    return (
+        <motion.div
+            ref={lightboxRef}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[70] flex items-center justify-center p-4 bg-black/95 backdrop-blur-md"
+            onClick={onClose}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Viewing ${asset.title}`}
+        >
+            {/* Close Button */}
+            <button
+                className="absolute top-4 right-4 z-10 p-3 bg-black/70 rounded-full text-white hover:bg-brand-orange transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange"
+                onClick={onClose}
+                aria-label="Close portfolio viewer"
+            >
+                <X size={24} />
+            </button>
+
+            {/* Navigation Arrows */}
+            {hasPrevious && (
+                <button
+                    className="absolute left-4 z-10 p-3 bg-black/70 rounded-full text-white hover:bg-brand-orange transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onPrevious();
+                    }}
+                    aria-label="Previous project"
+                >
+                    <ChevronLeft size={24} />
+                </button>
+            )}
+            {hasNext && (
+                <button
+                    className="absolute right-4 z-10 p-3 bg-black/70 rounded-full text-white hover:bg-brand-orange transition-colors focus:outline-none focus:ring-2 focus:ring-brand-orange"
+                    onClick={(e) => {
+                        e.stopPropagation();
+                        onNext();
+                    }}
+                    aria-label="Next project"
+                >
+                    <ChevronRight size={24} />
+                </button>
+            )}
+
+            {/* Content */}
+            <motion.div
+                initial={{ scale: 0.9, y: 20 }}
+                animate={{ scale: 1, y: 0 }}
+                exit={{ scale: 0.9, y: 20 }}
+                transition={{ type: 'spring', damping: 25, stiffness: 300 }}
+                className="max-w-7xl w-full max-h-[90vh] flex flex-col lg:flex-row bg-zinc-900 rounded-2xl overflow-hidden shadow-2xl"
+                onClick={(e) => e.stopPropagation()}
+            >
+                {/* Media Side */}
+                <div className="w-full lg:w-2/3 bg-black flex items-center justify-center p-4 md:p-8 min-h-[50vh]">
+                    {asset.type === 'image' ? (
+                        <picture>
+                            <img
+                                src={asset.src}
+                                alt={asset.title}
+                                className="max-w-full max-h-[75vh] object-contain rounded-lg"
+                                loading="eager"
+                            />
+                        </picture>
+                    ) : (
+                        <video
+                            src={asset.src}
+                            controls
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                            className="max-w-full max-h-[75vh] rounded-lg"
+                        />
+                    )}
+                </div>
+
+                {/* Info Side */}
+                <div className="w-full lg:w-1/3 p-6 md:p-8 overflow-y-auto">
+                    <div className="mb-4">
+                        <span className="text-brand-orange text-xs font-bold uppercase tracking-widest">
+                            {asset.category}
+                        </span>
+                        <h2 className="text-2xl md:text-3xl font-display font-bold text-white mt-2 uppercase">
+                            {asset.title}
+                        </h2>
+                    </div>
+                    {asset.description && (
+                        <p className="text-zinc-400 leading-relaxed mb-6">
+                            {asset.description}
+                        </p>
+                    )}
+                    <div className="flex items-center gap-4 text-sm text-zinc-500 pt-4 border-t border-zinc-800">
+                        <span>
+                            {currentIndex} / {totalCount}
+                        </span>
+                        <span className="uppercase bg-zinc-800 px-3 py-1 rounded-full text-zinc-300">
+                            {asset.type}
+                        </span>
+                    </div>
+                </div>
+            </motion.div>
+        </motion.div>
     );
 };
 

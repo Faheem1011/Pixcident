@@ -100,6 +100,7 @@ const Hero: React.FC = () => {
         loop
         muted
         playsInline
+        preload="metadata"
         className="absolute inset-0 w-full h-full object-cover opacity-60 z-0"
       >
         <source src="/assets/backgrounds/0119.mp4" type="video/mp4" />
